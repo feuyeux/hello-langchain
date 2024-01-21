@@ -1,0 +1,11 @@
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %logger{0} %thread [%-4level] - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="dev.langchain4j" level="DEBUG" additivity="false" />
+  <root level="INFO">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>

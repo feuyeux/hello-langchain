@@ -1,0 +1,16 @@
+# Miscellaneous
+*.class
+*.log
+*.lock
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+.idea/
+target/
+prepare.sh
+node_modules/
+lc_env
