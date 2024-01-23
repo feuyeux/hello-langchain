@@ -1,15 +1,14 @@
 package org.feuyeux.ai.langchain.hellolangchain;
 
+import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
+import static org.feuyeux.ai.langchain.hellolangchain.OpenApi.getKey;
+
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.PromptTemplate;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Map;
-
-import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
-import static org.feuyeux.ai.langchain.hellolangchain.OpenApi.getKey;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author feuyeux
@@ -17,8 +16,7 @@ import static org.feuyeux.ai.langchain.hellolangchain.OpenApi.getKey;
 @Slf4j
 public class TenUncles {
   public static void main(String[] args) {
-    PromptTemplate promptTemplate =
-        PromptTemplate.from("根据{{message}}中的描述告诉我，钱是被谁偷的，钱是谁的。");
+    PromptTemplate promptTemplate = PromptTemplate.from("根据{{message}}中的描述告诉我，钱是被谁偷的，钱是谁的。");
 
     Prompt prompt =
         promptTemplate.apply(

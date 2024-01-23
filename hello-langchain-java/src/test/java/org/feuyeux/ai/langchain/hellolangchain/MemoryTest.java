@@ -13,14 +13,14 @@ import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiTokenizer;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
 public class MemoryTest {
-  @BeforeEach
-  public void tearUp() throws InterruptedException {
+  @AfterEach
+  public void tearDown() throws InterruptedException {
     TimeUnit.SECONDS.sleep(25);
   }
 

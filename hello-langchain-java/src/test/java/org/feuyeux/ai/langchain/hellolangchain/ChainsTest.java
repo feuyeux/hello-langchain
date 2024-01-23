@@ -22,8 +22,8 @@ import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
@@ -31,8 +31,8 @@ public class ChainsTest {
   public static final String SIMPSON_S_ADVENTURES_TXT =
       "src/test/resources/simpson's_adventures.txt";
 
-  @BeforeEach
-  public void tearUp() throws InterruptedException {
+  @AfterEach
+  public void tearDown() throws InterruptedException {
     TimeUnit.SECONDS.sleep(25);
   }
 

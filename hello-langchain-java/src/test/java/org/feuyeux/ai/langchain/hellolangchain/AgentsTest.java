@@ -9,7 +9,7 @@ import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
@@ -32,8 +32,8 @@ public class AgentsTest {
     String chat(String userMessage);
   }
 
-  @BeforeEach
-  public void tearUp() throws InterruptedException {
+  @AfterEach
+  public void tearDown() throws InterruptedException {
     TimeUnit.SECONDS.sleep(25);
   }
 
