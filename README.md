@@ -53,3 +53,4 @@ Outside the window, the sun shines on the lush green leaves, while a gentle bree
 - [langchain github](https://github.com/langchain-ai/langchain)
 - [langchainjs github](https://github.com/langchain-ai/langchainjs)
 - [langchain js document](https://js.langchain.com/docs/get_started/introduction)
+- [Gemini](https://ai.google.dev/tutorials/python_quickstart)
