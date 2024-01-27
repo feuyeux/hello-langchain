@@ -6,5 +6,6 @@ prompt = ChatPromptTemplate.from_template(
 )
 llm = ChatOpenAI()
 chain = prompt | llm
+chain.get_graph().print_ascii()
 response = chain.invoke({"title": "窗外"})
 print(response)
