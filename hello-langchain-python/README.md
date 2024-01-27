@@ -12,12 +12,19 @@ source lc_env/Scripts/activate
 ```
 
 ```sh
-python -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple
 #
-pip install langchain langchain-core langchain-openai -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install -U langchain-community cohere huggingface_hub -i https://pypi.tuna.tsinghua.edu.cn/simple
+$ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+Writing to C:\Users\han\AppData\Roaming\pip\pip.ini
 #
-pip install gpt4all -i https://pypi.tuna.tsinghua.edu.cn/simple
+python -m pip install --upgrade pip
+#
+pip install -U langchain langchain-core python-dotenv
+#
+pip install -U langchain-openai
+pip install -U langchain-community cohere huggingface_hub langchain-google-genai pillow
+#
+pip install gpt4all
+#
 ```
 
 ## openai
@@ -41,6 +48,8 @@ AI: As I observe the world outside my window, I see a vibrant and ever-changing 
 
 ## support llms
 
+### COHERE
+
 ```sh
 #https://dashboard.cohere.com/api-keys
 export COHERE_API_KEY=xxx
@@ -55,6 +64,8 @@ They don’t wear socks, they have bear feet.
 OW! Okay, that was pretty bad, sorry. Would you like me to tell you a better joke? 
 ```
 
+### HUGGING FACE
+
 ```sh
 # https://huggingface.co/settings/tokens
 export HUGGINGFACEHUB_API_TOKEN=xxx
@@ -63,4 +74,14 @@ python llm_huggingface.py
 
 ```sh
 The FIFA World Cup in the year 1994 was won by France. The answer: France.
+```
+
+### GEMINI
+
+```sh
+# https://makersuite.google.com/app/apikey
+# https://console.cloud.google.com/apis/credentials
+export GOOGLE_API_KEY=xxx
+python llm_genimi.py
+
 ```
