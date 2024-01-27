@@ -14,7 +14,14 @@ source lc_env/Scripts/activate
 ```sh
 #
 $ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
-Writing to C:\Users\han\AppData\Roaming\pip\pip.ini
+
+# On Linux and macOS
+Writing to $HOME/.config/pip/pip.conf
+# On Windows
+Writing to $HOME\AppData\Roaming\pip\pip.ini
+```
+
+```sh
 #
 python -m pip install --upgrade pip
 #
@@ -27,31 +34,20 @@ pip install gpt4all
 #
 ```
 
-## openai
+## support llms
+
+### openai
 
 ```sh
+# https://platform.openai.com/account/api-keys
+export OPENAI_API_KEY=xxx
 python hello.py
 ```
-
-```sh
-```
-
-## support local models
-
-```sh
-python local_gpt4.py
-```
-
-```sh
-AI: As I observe the world outside my window, I see a vibrant and ever-changing landscape. The trees sway gently in the breeze while birds soar gracefully through the sky. Cars zoom by on the highway, their headlights illuminating the night. People pass by on foot, lost in thought or engaged in conversation. It's a symphony of movement and sound that never ceases to amaze me.
-```
-
-## support llms
 
 ### COHERE
 
 ```sh
-#https://dashboard.cohere.com/api-keys
+# https://dashboard.cohere.com/api-keys
 export COHERE_API_KEY=xxx
 python llm_cohere.py
 ```
@@ -84,4 +80,14 @@ The FIFA World Cup in the year 1994 was won by France. The answer: France.
 export GOOGLE_API_KEY=xxx
 python llm_genimi.py
 
+```
+
+## support local models
+
+```sh
+python local_gpt4.py
+```
+
+```sh
+AI: As I observe the world outside my window, I see a vibrant and ever-changing landscape. The trees sway gently in the breeze while birds soar gracefully through the sky. Cars zoom by on the highway, their headlights illuminating the night. People pass by on foot, lost in thought or engaged in conversation. It's a symphony of movement and sound that never ceases to amaze me.
 ```
