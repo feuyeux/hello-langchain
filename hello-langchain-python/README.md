@@ -5,6 +5,7 @@ python3 -m venv lc_env
 ```
 
 ```sh
+export http_proxy=http://127.0.0.1:59503
 # On Linux and macOS
 source lc_env/bin/activate
 # On Windows
@@ -24,18 +25,18 @@ Writing to $HOME\AppData\Roaming\pip\pip.ini
 ```sh
 #
 python -m pip install --upgrade pip
+# --upgrade --quiet
+pip install -U -q langchain langchain-core langchain-community python-dotenv
 #
-pip install -U langchain langchain-core python-dotenv
+pip install -U -q langchain-openai cohere huggingface_hub
 #
-pip install -U langchain-openai
-pip install -U langchain-community cohere huggingface_hub
+pip install -U -q langchain-google-genai pillow
 #
-pip install gpt4all
+pip install -U -q gpt4all
 #
-pip install -q -U google-generativeai
-pip install IPython
-#
-pip install --upgrade --quiet  langchain-google-genai pillow
+pip install -U -q google-generativeai
+pip install -U -q IPython
+
 ```
 
 ## support llms

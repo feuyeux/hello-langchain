@@ -94,3 +94,131 @@ mvn test -Dtest=ChainsTest
 ```sh
 mvn test -Dtest=AgentsTest
 ```
+
+## dependencies
+
+### langchain4j main module(which dependency core module)
+
+```xml
+<dependency>
+  <groupId>dev.langchain4j</groupId>
+  <artifactId>langchain4j</artifactId>
+  <version>${langchain4j.version}</version>
+</dependency>
+```
+
+### langchain4j-xyz(providing integration with various LLM providers and embedding stores)
+
+#### Models
+
+##### OpenAI
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-open-ai</artifactId>
+    <version>${langchain4j.version}</version>
+</dependency>
+```
+
+##### Azure OpenAI
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-azure-open-ai</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+##### [MistralAI](<https://mistral.ai/>)
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-mistral-ai</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+##### [Ollama](https://ollama.ai/)
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-ollama</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+#### Embedding Stores|Vector stores
+
+##### [Chroma](https://www.trychroma.com/)
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-chroma</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+##### Elasticsearch
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-elasticsearch</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+##### Pinecone
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-pinecone</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+##### [Milvus](<https://milvus.io/>)
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-milvus</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+##### Neo4j
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-neo4j</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+##### [Vespa](https://vespa.ai/)
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-vespa</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
+
+##### [Weaviate](https://weaviate.io/)
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-weaviate</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
