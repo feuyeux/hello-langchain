@@ -4,6 +4,7 @@
 *.lock
 *.pyc
 *.swp
+*.bkp
 .DS_Store
 .atom/
 .buildlog/
