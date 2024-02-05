@@ -5,6 +5,7 @@
 *.pyc
 *.swp
 *.bkp
+*.dtmp
 .DS_Store
 .atom/
 .buildlog/
