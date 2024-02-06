@@ -48,9 +48,11 @@ Outside the window, the sun shines on the lush green leaves, while a gentle bree
 ## Reference
 
 - [Introduction to LangChain](https://www.baeldung.com/java-langchain-basics)
-- [langchain4j github](https://github.com/langchain4j/langchain4j)
-- [langchain4j document](https://langchain4j.github.io/langchain4j/docs/tutorials)
-- [langchain github](https://github.com/langchain-ai/langchain)
-- [langchainjs github](https://github.com/langchain-ai/langchainjs)
-- [langchain js document](https://js.langchain.com/docs/get_started/introduction)
+- [Langchain4j github](https://github.com/langchain4j/langchain4j)
+- [Langchain4j document](https://langchain4j.github.io/langchain4j/docs/tutorials)
+- [LangChain github](https://github.com/langchain-ai/langchain)
+- [LangChain JS github](https://github.com/langchain-ai/langchainjs)
+- [LangChain JS document](https://js.langchain.com/docs/get_started/introduction)
+- [LangChain Dart github](https://github.com/davidmigloz/langchain_dart)
+- [LangChain Go github](https://github.com/tmc/langchaingo)
 - [Gemini](https://ai.google.dev/tutorials/python_quickstart)
