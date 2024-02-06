@@ -1,4 +1,6 @@
-# ![hello-langchain](img/hello-langchain.drawio.png)
+# hello-langchain
+
+![hello-langchain](img/hello-langchain.drawio.png)
 
 ## Quick start
 
