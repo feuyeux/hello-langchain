@@ -77,14 +77,54 @@ The world outside the window is full of vitality and vigor. The sunlight sprinkl
 
 ### go
 
+```go
+func main() {
+ ctx := context.Background()
+ llm, err := openai.New()
+ if err != nil {
+  log.Fatal(err)
+ }
+ prompt := prompts.PromptTemplate{
+  Template:       "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。",
+  InputVariables: []string{"title"},
+  TemplateFormat: prompts.TemplateFormatGoTemplate,
+ }
+ result, err := prompt.Format(map[string]any{
+  "title": "窗外",
+ })
+ if err != nil {
+  log.Fatal(err)
+ }
+ completion, err := llms.GenerateFromSinglePrompt(ctx, llm, result)
+ if err != nil {
+  log.Fatal(err)
+ }
+ fmt.Println(completion)
+}
+```
+
+```sh
+标题：春天的绽放
+
+春风轻柔地吹拂着大地，万物苏醒。细嫩的枝叶迎着太阳微笑绽放，花朵争相绽放，予人惊艳的美景。阳光温暖地洒在大地上，金黄的麦田翠绿欲滴，阳台上的花朵散发出迷人的芳香。春天，是大自然的画家，也是生命的奇迹，让我们为春天的绽放欢呼！
+
+Translation：
+
+Title: The Blooming of Spring
+
+The gentle spring breeze brushes the earth as everything awakens. Tender branches smile and bloom against the sun, while flowers vie for attention, presenting stunning views. The warm sunlight pours onto the land, turning the golden wheat fields into lush greens, and balcony flowers release captivating fragrances. Spring, the artist of nature and a miracle of life, let us cheer for the blooming of spring!
+```
+
 ## Reference
 
 - [Introduction to LangChain](https://www.baeldung.com/java-langchain-basics)
-- [Langchain4j github](https://github.com/langchain4j/langchain4j)
 - [Langchain4j document](https://langchain4j.github.io/langchain4j/docs/tutorials)
-- [LangChain github](https://github.com/langchain-ai/langchain)
-- [LangChain JS github](https://github.com/langchain-ai/langchainjs)
+- [Langchain document](https://python.langchain.com/docs)
 - [LangChain JS document](https://js.langchain.com/docs/get_started/introduction)
-- [LangChain Dart github](https://github.com/davidmigloz/langchain_dart)
+- [Langchain4j github](https://github.com/langchain4j/langchain4j)
+- [LangChain github](https://github.com/langchain-ai/langchain)
+- [LangChain Rust github](https://github.com/gyroflaw/langchain_rs)
 - [LangChain Go github](https://github.com/tmc/langchaingo)
+- [LangChain JS github](https://github.com/langchain-ai/langchainjs)
+- [LangChain Dart github](https://github.com/davidmigloz/langchain_dart)
 - [Gemini](https://ai.google.dev/tutorials/python_quickstart)

@@ -18,3 +18,4 @@ node_modules/
 lc_env
 .env
 test/
+go.sum

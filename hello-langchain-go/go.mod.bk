@@ -1,0 +1,5 @@
+module hello-langchain
+
+go 1.21
+
+require github.com/tmc/langchaingo latest
