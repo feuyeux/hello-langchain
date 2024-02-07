@@ -1,0 +1,16 @@
+[package]
+name = "hello_langchain"
+version = "0.0.1"
+authors = ["feuyeux <feuyeux@gmail.com>"]
+edition = "2021"
+
+[[bin]]
+name = "openai"
+path = "src/openai.rs"
+
+[dependencies]
+anyhow = "1.0.*"
+dotenvy = "0.15.7"
+env_logger = "0.11.1"
+langchain_rs = "0.0.2"
+tokio = { version = "1", features = ["full"] }

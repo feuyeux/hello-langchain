@@ -47,6 +47,36 @@ public class Hello {
 Outside the window, the sun shines on the lush green leaves, while a gentle breeze caresses the cloud-like blossoms. The birds sing joyfully, seemingly narrating the wonders of nature. These scenes, like a magnificent painting, depict a life of tranquility and harmony. The world outside the window is truly beautiful!
 ```
 
+### rust
+
+```rust
+#[tokio::main]
+async fn main() -> Result<()> {
+    dotenvy::dotenv()?;
+    let template =
+        "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。"
+            .to_string();
+    let variables = vec!["title".to_string()];
+    let mut args = PromptArgs::new();
+    args.insert("title", "窗外");
+    let prompt_template = PromptTemplate::new(template, variables, TemplateFormat::FString);
+    let text = prompt_template.format(args)?;
+
+    let openai = OpenAI::default();
+    let result = openai.generate(&text).await?;
+    print!("{:#?}", result.generation);
+    Ok(())
+}
+```
+
+```sh
+窗外的世界充满了生机和活力。阳光洒在绿树上，微风轻拂着花朵。小鸟在天空中欢快地歌唱，给大地带来了春天的气息。这个美丽的景象让心情愉悦，仿佛世界都变得更加美好了。
+
+The world outside the window is full of vitality and vigor. The sunlight sprinkles on the green trees, and the breeze gently brushes the flowers. Birds sing joy.
+```
+
+### go
+
 ## Reference
 
 - [Introduction to LangChain](https://www.baeldung.com/java-langchain-basics)
