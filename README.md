@@ -103,6 +103,22 @@ func main() {
 }
 ```
 
+### dart
+
+```dart
+main(List<String> args) async {
+  final llm =
+      ChatOpenAI(apiKey: "...");
+
+  final prompt = PromptTemplate.fromTemplate(
+      "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。");
+
+  final chain = prompt.pipe(llm);
+  final LanguageModelResult result = await chain.invoke({"title": "窗外"});
+  print(result.generations[0].output);
+}
+```
+
 ```sh
 标题：春天的绽放
 
@@ -115,11 +131,45 @@ Title: The Blooming of Spring
 The gentle spring breeze brushes the earth as everything awakens. Tender branches smile and bloom against the sun, while flowers vie for attention, presenting stunning views. The warm sunlight pours onto the land, turning the golden wheat fields into lush greens, and balcony flowers release captivating fragrances. Spring, the artist of nature and a miracle of life, let us cheer for the blooming of spring!
 ```
 
+```sh
+窗外阳光明媚，鲜花盛开。鸟儿欢快地跳跃，小动物们在草地上嬉戏。一棵高大的树在微风中舒展枝叶，为这个美丽的世界增添了绿意。这个窗外的景象宛如一幅生动的画卷，让人心旷神怡。
+
+Outside the window, the sun is shining brightly with vibrant flowers blooming. Birds are happily hopping, and small animals play on the grass. A tall tree stretches its branches and leaves in the gentle breeze, adding a touch of green to this beautiful world. The view outside the window is like a vivid painting, bringing a sense of tranquility and joy.
+```
+
+### nodejs
+
+```javascript
+import { ChatOpenAI } from "@langchain/openai";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { StringOutputParser } from "@langchain/core/output_parsers";
+
+const prompt = ChatPromptTemplate.fromMessages([
+    ["human", "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。"],
+]);
+const model = new ChatOpenAI({});
+const outputParser = new StringOutputParser();
+
+const chain = prompt.pipe(model).pipe(outputParser);
+
+const response = await chain.invoke({
+    title: "窗外",
+});
+console.log(response);
+```
+
+```sh
+窗外，立秋之时，金色的阳光洒满大地。一树树的绿叶轻轻摇曳，和风微拂，如诗如画。小鸟在空中飞翔，欢快地歌唱。这是大自然的交响乐，美妙而神奇。
+
+Outside the window, as autumn begins, golden sunlight bathes the earth. The green leaves of trees sway gently, kissed by a gentle breeze, creating a picturesque sight. Birds soar through the sky, singing joyfully. This is nature’s symphony, enchanting and marvelous.
+```
+
 ## Reference
 
 - [Introduction to LangChain](https://www.baeldung.com/java-langchain-basics)
 - [Langchain4j document](https://langchain4j.github.io/langchain4j/docs/tutorials)
 - [Langchain document](https://python.langchain.com/docs)
+- [Langchain Dart document](https://langchaindart.com)
 - [LangChain JS document](https://js.langchain.com/docs/get_started/introduction)
 - [Langchain4j github](https://github.com/langchain4j/langchain4j)
 - [LangChain github](https://github.com/langchain-ai/langchain)

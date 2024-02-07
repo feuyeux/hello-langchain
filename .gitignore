@@ -19,3 +19,5 @@ lc_env
 .env
 test/
 go.sum
+.dart_tool/
+package-lock.json
