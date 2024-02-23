@@ -13,4 +13,4 @@ prompt = PromptTemplate.from_template("Tell me a joke about {topic}")
 chain = prompt | llm
 
 response = chain.invoke({"topic": "bears"})
-print(response.content)
+print(response)
