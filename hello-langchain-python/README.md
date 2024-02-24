@@ -124,7 +124,8 @@ AI: As I observe the world outside my window, I see a vibrant and ever-changing 
 # https://makersuite.google.com/app/apikey
 # https://console.cloud.google.com/apis/credentials
 export GOOGLE_API_KEY=xxx
-export http_proxy=http://127.0.0.1:56242
+export http_proxy=http://127.0.0.1:56383
+
 python rag_gemini.py
 ```
 

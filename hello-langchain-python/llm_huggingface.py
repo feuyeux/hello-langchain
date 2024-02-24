@@ -1,4 +1,4 @@
-from langchain_community.llms import HuggingFaceHub
+from langchain_community.llms import HuggingFaceEndpoint
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
@@ -21,19 +21,19 @@ repo_id = "google/flan-t5-xxl"
 # Falcon, by Technology Innovation Institute (TII)
 # repo_id = "tiiuae/falcon-40b"
 
-llm = HuggingFaceHub(
+llm = HuggingFaceEndpoint(
     repo_id=repo_id, model_kwargs={"temperature": 0.5, "max_length": 64}
 )
 
 # InternLM-Chat, by Shanghai AI Laboratory
 # repo_id = "internlm/internlm-chat-7b"
-# llm = HuggingFaceHub(
+# llm = HuggingFaceEndpoint(
 #     repo_id=repo_id, model_kwargs={"max_length": 128, "temperature": 0.8}
 # )
 
 # Qwen, by Alibaba Cloud
 # repo_id = "Qwen/Qwen-7B"
-# llm = HuggingFaceHub(
+# llm = HuggingFaceEndpoint(
 #     repo_id=repo_id, model_kwargs={"max_length": 128, "temperature": 0.5}
 # )
 
