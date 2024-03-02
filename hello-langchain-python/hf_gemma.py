@@ -5,7 +5,6 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 repo_7b = "google/gemma-7b"
 # https://huggingface.co/google/gemma-2b
 repo_2b = "google/gemma-2b"
-HUGGINGFACEHUB_API_TOKEN = os.environ["HUGGINGFACEHUB_API_TOKEN"]
 
 tokenizer = AutoTokenizer.from_pretrained(repo_2b)
 model = AutoModelForCausalLM.from_pretrained(repo_2b)

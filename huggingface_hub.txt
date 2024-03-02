@@ -1,0 +1,2 @@
+pip install langchainhub
+python -c "from huggingface_hub.hf_api import HfFolder; HfFolder.save_token('YOUR_TOKEN_HERE')"
