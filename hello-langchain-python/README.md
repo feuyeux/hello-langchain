@@ -28,7 +28,7 @@ python -m pip install --upgrade pip
 # --upgrade --quiet
 pip install -U -q langchain langchain-core langchain-community python-dotenv
 #
-pip install -U -q langchain-openai cohere huggingface_hub
+pip install -U -q langchain-openai cohere
 #
 pip install -U -q langchain-google-genai pillow
 #
@@ -36,7 +36,9 @@ pip install -U -q gpt4all
 #
 pip install -U -q google-generativeai
 pip install -U -q IPython
-
+#
+pip install -U -q transformers
+pip install -U -q langchain-huggingface
 ```
 
 ## support llms
