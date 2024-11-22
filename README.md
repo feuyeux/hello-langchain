@@ -4,7 +4,7 @@
 
 ## Quick start
 
-### python
+### 1 python
 
 ```python
 from langchain_core.prompts import ChatPromptTemplate
@@ -25,7 +25,7 @@ print(response)
 Outside the window is a peaceful world, with sunlight streaming on the green trees and a gentle breeze caressing the flowers. On the grass, children laugh and play, their joyful voices echoing throughout the neighborhood. Birds soar freely in the sky, singing beautiful melodies. All of this makes me feel the beauty and hope of life.
 ```
 
-### java
+### 2 java
 
 ```java
 @Slf4j
@@ -47,7 +47,7 @@ public class Hello {
 Outside the window, the sun shines on the lush green leaves, while a gentle breeze caresses the cloud-like blossoms. The birds sing joyfully, seemingly narrating the wonders of nature. These scenes, like a magnificent painting, depict a life of tranquility and harmony. The world outside the window is truly beautiful!
 ```
 
-### rust
+### 3 rust
 
 ```rust
 #[tokio::main]
@@ -75,7 +75,7 @@ async fn main() -> Result<()> {
 The world outside the window is full of vitality and vigor. The sunlight sprinkles on the green trees, and the breeze gently brushes the flowers. Birds sing joy.
 ```
 
-### go
+### 4 go
 
 ```go
 func main() {
@@ -103,7 +103,7 @@ func main() {
 }
 ```
 
-### dart
+### 5 dart
 
 ```dart
 main(List<String> args) async {
@@ -137,7 +137,7 @@ The gentle spring breeze brushes the earth as everything awakens. Tender branche
 Outside the window, the sun is shining brightly with vibrant flowers blooming. Birds are happily hopping, and small animals play on the grass. A tall tree stretches its branches and leaves in the gentle breeze, adding a touch of green to this beautiful world. The view outside the window is like a vivid painting, bringing a sense of tranquility and joy.
 ```
 
-### nodejs
+### 6 nodejs
 
 ```javascript
 import { ChatOpenAI } from "@langchain/openai";
@@ -164,17 +164,17 @@ console.log(response);
 Outside the window, as autumn begins, golden sunlight bathes the earth. The green leaves of trees sway gently, kissed by a gentle breeze, creating a picturesque sight. Birds soar through the sky, singing joyfully. This is nature’s symphony, enchanting and marvelous.
 ```
 
-## Reference
+## References
+
+1. [LangChain Dart github](https://github.com/davidmigloz/langchain_dart) <https://pub.dev/packages/langchain>
+1. [LangChain Go github](https://github.com/tmc/langchaingo)
+1. [Langchain4j github](https://github.com/langchain4j/langchain4j) <https://docs.langchain4j.dev/>
+1. [LangChain JS github](https://github.com/langchain-ai/langchainjs) <https://js.langchain.com/docs/introduction/>
+1. [LangChain github](https://github.com/langchain-ai/langchain) <https://python.langchain.com/docs/introduction/>
+1. [LangChain Rust github](https://github.com/Abraxas-365/langchain-rust) <https://docs.rs/crate/langchain-rust/latest>
+
+## Documents
 
 - [Introduction to LangChain](https://www.baeldung.com/java-langchain-basics)
-- [Langchain4j document](https://langchain4j.github.io/langchain4j/docs/tutorials)
-- [Langchain document](https://python.langchain.com/docs)
-- [Langchain Dart document](https://langchaindart.com)
-- [LangChain JS document](https://js.langchain.com/docs/get_started/introduction)
-- [Langchain4j github](https://github.com/langchain4j/langchain4j)
-- [LangChain github](https://github.com/langchain-ai/langchain)
-- [LangChain Rust github](https://github.com/gyroflaw/langchain_rs)
-- [LangChain Go github](https://github.com/tmc/langchaingo)
-- [LangChain JS github](https://github.com/langchain-ai/langchainjs)
-- [LangChain Dart github](https://github.com/davidmigloz/langchain_dart)
+- [Langchain4j tutorials](https://langchain4j.github.io/langchain4j/docs/tutorials)
 - [Gemini](https://ai.google.dev/tutorials/python_quickstart)
