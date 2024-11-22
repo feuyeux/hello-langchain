@@ -1,6 +1,6 @@
-# hello-langchain
+# Hello Langchain
 
-![hello-langchain](img/hello-langchain.drawio.png)
+A straightforward, equally capable demonstration for tracking the evolution of multiple programming languages across the iterations of LangChain.
 
 ## Quick start
 
