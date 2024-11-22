@@ -5,5 +5,5 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 dependencies:
   langchain: 0.4.1
-  langchain_openai: ^0.4.0+1
+  langchain_openai: ^0.7.2+5
   langchain_ollama: ^0.3.2
