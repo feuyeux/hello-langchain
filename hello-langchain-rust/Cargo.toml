@@ -8,6 +8,10 @@ edition = "2021"
 name = "openai"
 path = "src/openai.rs"
 
+[[bin]]
+name = "ollama"
+path = "src/ollama.rs"
+
 [dependencies]
 anyhow = "1.0.*"
 dotenvy = "0.15.7"

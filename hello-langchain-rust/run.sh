@@ -1,1 +1,8 @@
-cargo run --bin openai
+#!/bin/bash
+cd "$(
+    cd "$(dirname "$0")" >/dev/null 2>&1
+    pwd -P
+)/" || exit
+set -e
+
+cargo run --bin ollama

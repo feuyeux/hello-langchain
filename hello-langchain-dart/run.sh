@@ -1,2 +1,9 @@
-dart pub add langchain_openai:'^0.4.0+1'
-dart openai.dart
+#!/bin/bash
+cd "$(
+    cd "$(dirname "$0")" >/dev/null 2>&1
+    pwd -P
+)/" || exit
+set -e
+
+dart pub get
+dart ollama.dart

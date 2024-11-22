@@ -6,15 +6,21 @@ A straightforward, equally capable demonstration for tracking the evolution of m
 
 ### 1 python
 
+`hello-langchain-python\0.3\run.sh`
+
 ```python
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
+from langchain_ollama.llms import OllamaLLM
 
-prompt = ChatPromptTemplate.from_template(
-    "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。"
+template = """你是顶级的短片作家，
+请根据{title}的内容，使用中文写一篇50字的精品短文，
+然后翻译成英文。"""
+prompt = ChatPromptTemplate.from_template(template)
+model = OllamaLLM(
+    model="llama3.2",
+    base_url="http://localhost:11434"
 )
-llm = ChatOpenAI()
-chain = prompt | llm
+chain = prompt | model
 response = chain.invoke({"title": "窗外"})
 print(response)
 ```
@@ -29,15 +35,17 @@ Outside the window is a peaceful world, with sunlight streaming on the green tre
 
 ```java
 @Slf4j
-public class Hello {
-    public static void main(String[] args) {
-        Prompt prompt = PromptTemplate
-                .from("你是顶级的短片作家，请根据{{title}}的内容，写一篇50字的精品短文，然后翻译成英文。")
-                .apply(Map.of("title", "窗外"));
-        ChatLanguageModel model = OpenAiChatModel.builder().apiKey(getKey()).build();
-        String response = model.generate(prompt.text());
-        log.info("{}", response);
-    }
+public class HelloOllama {
+  public static void main(String[] args) {
+    Prompt prompt =
+        PromptTemplate.from("你是顶级的短片作家，请根据{{title}}的内容，写一篇50字的精品短文，然后翻译成英文。")
+            .apply(Map.of("title", "窗外"));
+    String modelName = "llama3.2";
+    ChatLanguageModel model =
+        OllamaChatModel.builder().baseUrl("http://localhost:11434").modelName(modelName).build();
+    String response = model.generate(prompt.text());
+    log.info("{}", response);
+  }
 }
 ```
 
@@ -80,12 +88,12 @@ The world outside the window is full of vitality and vigor. The sunlight sprinkl
 ```go
 func main() {
  ctx := context.Background()
- llm, err := openai.New()
+ llm, err := ollama.New(ollama.WithModel("llama3.2"))
  if err != nil {
   log.Fatal(err)
  }
  prompt := prompts.PromptTemplate{
-  Template:       "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。",
+  Template:       "你是顶级的短片作家，请根据{{.title}}的内容，写一篇50字的精品短文，然后翻译成英文。",
   InputVariables: []string{"title"},
   TemplateFormat: prompts.TemplateFormatGoTemplate,
  }
@@ -99,7 +107,7 @@ func main() {
  if err != nil {
   log.Fatal(err)
  }
- fmt.Println(completion)
+ fmt.Println("Response:\n", completion)
 }
 ```
 
