@@ -1,20 +1,26 @@
-# hello-langchain
+# Hello Langchain
 
-![hello-langchain](img/hello-langchain.drawio.png)
+A straightforward, equally capable demonstration for tracking the evolution of multiple programming languages across the iterations of LangChain.
 
 ## Quick start
 
-### python
+### 1 python
+
+`hello-langchain-python\0.3\run.sh`
 
 ```python
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
+from langchain_ollama.llms import OllamaLLM
 
-prompt = ChatPromptTemplate.from_template(
-    "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。"
+template = """你是顶级的短片作家，
+请根据{title}的内容，使用中文写一篇50字的精品短文，
+然后翻译成英文。"""
+prompt = ChatPromptTemplate.from_template(template)
+model = OllamaLLM(
+    model="llama3.2",
+    base_url="http://localhost:11434"
 )
-llm = ChatOpenAI()
-chain = prompt | llm
+chain = prompt | model
 response = chain.invoke({"title": "窗外"})
 print(response)
 ```
@@ -25,19 +31,21 @@ print(response)
 Outside the window is a peaceful world, with sunlight streaming on the green trees and a gentle breeze caressing the flowers. On the grass, children laugh and play, their joyful voices echoing throughout the neighborhood. Birds soar freely in the sky, singing beautiful melodies. All of this makes me feel the beauty and hope of life.
 ```
 
-### java
+### 2 java
 
 ```java
 @Slf4j
-public class Hello {
-    public static void main(String[] args) {
-        Prompt prompt = PromptTemplate
-                .from("你是顶级的短片作家，请根据{{title}}的内容，写一篇50字的精品短文，然后翻译成英文。")
-                .apply(Map.of("title", "窗外"));
-        ChatLanguageModel model = OpenAiChatModel.builder().apiKey(getKey()).build();
-        String response = model.generate(prompt.text());
-        log.info("{}", response);
-    }
+public class HelloOllama {
+  public static void main(String[] args) {
+    Prompt prompt =
+        PromptTemplate.from("你是顶级的短片作家，请根据{{title}}的内容，写一篇50字的精品短文，然后翻译成英文。")
+            .apply(Map.of("title", "窗外"));
+    String modelName = "llama3.2";
+    ChatLanguageModel model =
+        OllamaChatModel.builder().baseUrl("http://localhost:11434").modelName(modelName).build();
+    String response = model.generate(prompt.text());
+    log.info("{}", response);
+  }
 }
 ```
 
@@ -47,7 +55,7 @@ public class Hello {
 Outside the window, the sun shines on the lush green leaves, while a gentle breeze caresses the cloud-like blossoms. The birds sing joyfully, seemingly narrating the wonders of nature. These scenes, like a magnificent painting, depict a life of tranquility and harmony. The world outside the window is truly beautiful!
 ```
 
-### rust
+### 3 rust
 
 ```rust
 #[tokio::main]
@@ -75,17 +83,17 @@ async fn main() -> Result<()> {
 The world outside the window is full of vitality and vigor. The sunlight sprinkles on the green trees, and the breeze gently brushes the flowers. Birds sing joy.
 ```
 
-### go
+### 4 go
 
 ```go
 func main() {
  ctx := context.Background()
- llm, err := openai.New()
+ llm, err := ollama.New(ollama.WithModel("llama3.2"))
  if err != nil {
   log.Fatal(err)
  }
  prompt := prompts.PromptTemplate{
-  Template:       "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。",
+  Template:       "你是顶级的短片作家，请根据{{.title}}的内容，写一篇50字的精品短文，然后翻译成英文。",
   InputVariables: []string{"title"},
   TemplateFormat: prompts.TemplateFormatGoTemplate,
  }
@@ -99,11 +107,11 @@ func main() {
  if err != nil {
   log.Fatal(err)
  }
- fmt.Println(completion)
+ fmt.Println("Response:\n", completion)
 }
 ```
 
-### dart
+### 5 dart
 
 ```dart
 main(List<String> args) async {
@@ -137,7 +145,7 @@ The gentle spring breeze brushes the earth as everything awakens. Tender branche
 Outside the window, the sun is shining brightly with vibrant flowers blooming. Birds are happily hopping, and small animals play on the grass. A tall tree stretches its branches and leaves in the gentle breeze, adding a touch of green to this beautiful world. The view outside the window is like a vivid painting, bringing a sense of tranquility and joy.
 ```
 
-### nodejs
+### 6 nodejs
 
 ```javascript
 import { ChatOpenAI } from "@langchain/openai";
@@ -164,17 +172,17 @@ console.log(response);
 Outside the window, as autumn begins, golden sunlight bathes the earth. The green leaves of trees sway gently, kissed by a gentle breeze, creating a picturesque sight. Birds soar through the sky, singing joyfully. This is nature’s symphony, enchanting and marvelous.
 ```
 
-## Reference
+## References
+
+1. [LangChain Dart](https://github.com/davidmigloz/langchain_dart) <https://pub.dev/packages/langchain>
+2. [LangChain Go](https://github.com/tmc/langchaingo)
+3. [Langchain4j](https://github.com/langchain4j/langchain4j) <https://docs.langchain4j.dev/>
+4. [LangChain JS](https://github.com/langchain-ai/langchainjs) <https://js.langchain.com/docs/introduction/>
+5. [LangChain](https://github.com/langchain-ai/langchain) <https://python.langchain.com/docs/introduction/>
+6. [LangChain Rust](https://github.com/Abraxas-365/langchain-rust) <https://docs.rs/crate/langchain-rust/latest>
+
+## Documents
 
 - [Introduction to LangChain](https://www.baeldung.com/java-langchain-basics)
-- [Langchain4j document](https://langchain4j.github.io/langchain4j/docs/tutorials)
-- [Langchain document](https://python.langchain.com/docs)
-- [Langchain Dart document](https://langchaindart.com)
-- [LangChain JS document](https://js.langchain.com/docs/get_started/introduction)
-- [Langchain4j github](https://github.com/langchain4j/langchain4j)
-- [LangChain github](https://github.com/langchain-ai/langchain)
-- [LangChain Rust github](https://github.com/gyroflaw/langchain_rs)
-- [LangChain Go github](https://github.com/tmc/langchaingo)
-- [LangChain JS github](https://github.com/langchain-ai/langchainjs)
-- [LangChain Dart github](https://github.com/davidmigloz/langchain_dart)
+- [Langchain4j tutorials](https://langchain4j.github.io/langchain4j/docs/tutorials)
 - [Gemini](https://ai.google.dev/tutorials/python_quickstart)

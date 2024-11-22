@@ -5,4 +5,4 @@ cd "$(
 )/" || exit
 set -e
 
-go run ollama.go
+go mod tidy

@@ -3,6 +3,4 @@ cd "$(
   cd "$(dirname "$0")" >/dev/null 2>&1
   pwd -P
 )/" || exit
-set -e
-
-go run ollama.go
+cp cargo.config.toml "$HOME"/.cargo/config.toml

@@ -15,7 +15,7 @@
 target/
 prepare.sh
 node_modules/
-lc_env
+*_env
 .env
 test/
 go.sum

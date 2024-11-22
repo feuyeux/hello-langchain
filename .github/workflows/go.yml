@@ -1,0 +1,39 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+defaults:
+ run:
+  working-directory: ./hello-grpc-go
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22'
+
+    - name: Build
+      run: |
+        sudo apt-get install protobuf-compiler
+        go mod tidy
+        go install github.com/golang/protobuf/protoc-gen-go
+        go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+        go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+        protoc --go_out=. ./proto/landing.proto
+        protoc --go-grpc_out="$(pwd)" ./proto/landing.proto
+        go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
