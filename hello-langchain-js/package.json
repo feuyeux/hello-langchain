@@ -4,7 +4,7 @@
   "description": "hello langchain",
   "main": "index.js",
   "dependencies": {
-    "@langchain/openai": "^0.0.14",
+    "@langchain/openai": "^0.3.14",
     "dotenv": "^16.4.1",
     "langchain": "^0.1.14"
   },
