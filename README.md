@@ -1,4 +1,4 @@
-# Hello Langchain
+# Hello Langchain🦜️
 
 A straightforward, equally capable demonstration for tracking the evolution of multiple programming languages across the iterations of LangChain.
 
