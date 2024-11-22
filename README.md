@@ -174,15 +174,19 @@ Outside the window, as autumn begins, golden sunlight bathes the earth. The gree
 
 ## References
 
-1. [LangChain Dart](https://github.com/davidmigloz/langchain_dart) <https://pub.dev/packages/langchain>
+1. [LangChain Dart](https://github.com/davidmigloz/langchain_dart) 
 2. [LangChain Go](https://github.com/tmc/langchaingo)
-3. [Langchain4j](https://github.com/langchain4j/langchain4j) <https://docs.langchain4j.dev/>
-4. [LangChain JS](https://github.com/langchain-ai/langchainjs) <https://js.langchain.com/docs/introduction/>
-5. [LangChain](https://github.com/langchain-ai/langchain) <https://python.langchain.com/docs/introduction/>
-6. [LangChain Rust](https://github.com/Abraxas-365/langchain-rust) <https://docs.rs/crate/langchain-rust/latest>
+3. [Langchain4j](https://github.com/langchain4j/langchain4j) 
+4. [LangChain JS](https://github.com/langchain-ai/langchainjs) 
+5. [LangChain](https://github.com/langchain-ai/langchain) 
+6. [LangChain Rust](https://github.com/Abraxas-365/langchain-rust)
 
 ## Documents
-
-- [Introduction to LangChain](https://www.baeldung.com/java-langchain-basics)
 - [Langchain4j tutorials](https://langchain4j.github.io/langchain4j/docs/tutorials)
+- <https://docs.rs/crate/langchain-rust/latest>
+- <https://pub.dev/packages/langchain>
+- <https://docs.langchain4j.dev/>
+- <https://js.langchain.com/docs/introduction/>
+- <https://python.langchain.com/docs/introduction/>
+- <https://docs.rs/crate/langchain-rust/latest>
 - [Gemini](https://ai.google.dev/tutorials/python_quickstart)
