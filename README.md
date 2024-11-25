@@ -115,14 +115,14 @@ func main() {
 
 ```dart
 main(List<String> args) async {
-  final llm =
-      ChatOpenAI(apiKey: "...");
-
   final prompt = PromptTemplate.fromTemplate(
       "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。");
-
-  final chain = prompt.pipe(llm);
-  final LanguageModelResult result = await chain.invoke({"title": "窗外"});
+  final llm = ChatOllama();
+  final runnableLlm =
+      llm as Runnable<PromptValue, BaseLangChainOptions, Object?>;
+  final chain = prompt.pipe(runnableLlm);
+  final result =
+      await chain.invoke({"title": "窗外"}) as LanguageModelResult<Object>;
   print(result.generations[0].output);
 }
 ```
@@ -148,18 +148,12 @@ Outside the window, the sun is shining brightly with vibrant flowers blooming. B
 ### 6 nodejs
 
 ```javascript
-import { ChatOpenAI } from "@langchain/openai";
-import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { StringOutputParser } from "@langchain/core/output_parsers";
-
 const prompt = ChatPromptTemplate.fromMessages([
     ["human", "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。"],
 ]);
-const model = new ChatOpenAI({});
+const model = new Ollama({model: "llama3.2"});
 const outputParser = new StringOutputParser();
-
 const chain = prompt.pipe(model).pipe(outputParser);
-
 const response = await chain.invoke({
     title: "窗外",
 });
@@ -174,14 +168,15 @@ Outside the window, as autumn begins, golden sunlight bathes the earth. The gree
 
 ## References
 
-1. [LangChain Dart](https://github.com/davidmigloz/langchain_dart) 
+1. [LangChain Dart](https://github.com/davidmigloz/langchain_dart)
 2. [LangChain Go](https://github.com/tmc/langchaingo)
-3. [Langchain4j](https://github.com/langchain4j/langchain4j) 
-4. [LangChain JS](https://github.com/langchain-ai/langchainjs) 
-5. [LangChain](https://github.com/langchain-ai/langchain) 
+3. [Langchain4j](https://github.com/langchain4j/langchain4j)
+4. [LangChain JS](https://github.com/langchain-ai/langchainjs)
+5. [LangChain](https://github.com/langchain-ai/langchain)
 6. [LangChain Rust](https://github.com/Abraxas-365/langchain-rust)
 
 ## Documents
+
 - [Langchain4j tutorials](https://langchain4j.github.io/langchain4j/docs/tutorials)
 - <https://docs.rs/crate/langchain-rust/latest>
 - <https://pub.dev/packages/langchain>
