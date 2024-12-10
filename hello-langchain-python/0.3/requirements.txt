@@ -2,5 +2,5 @@ langchain-core==0.3.22
 langchain==0.3.10
 langchain-community==0.3.10
 langchain-ollama==0.2.1
-langgraph==0.2.56
+langgraph==0.2.57
 grandalf==0.8
