@@ -1,5 +1,4 @@
 name: Continous Integration
-
 on:
   push:
     branches:
@@ -10,7 +9,6 @@ permissions:
   contents: write
 
 jobs:
-
   dependabot:
     name: 'Dependabot'
     runs-on: ubuntu-latest
