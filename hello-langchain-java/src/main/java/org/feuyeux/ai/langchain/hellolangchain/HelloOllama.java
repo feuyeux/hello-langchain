@@ -1,11 +1,13 @@
 package org.feuyeux.ai.langchain.hellolangchain;
 
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.PromptTemplate;
-import java.util.Map;
-
 import dev.langchain4j.model.ollama.OllamaChatModel;
+import dev.langchain4j.model.output.Response;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -20,7 +22,11 @@ public class HelloOllama {
     String modelName = "llama3.2";
     ChatLanguageModel model =
         OllamaChatModel.builder().baseUrl("http://localhost:11434").modelName(modelName).build();
-    String response = model.generate(prompt.text());
-    log.info("{}", response);
+    String input = prompt.text();
+    String result = model.generate(input);
+    log.info("{}", result);
+    log.info("{}", "=====================");
+    Response<AiMessage> response = model.generate(UserMessage.from(input));
+    log.info("{}", response.content().text());
   }
 }

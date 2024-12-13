@@ -1,7 +1,7 @@
 package org.feuyeux.ai.langchain.hellolangchain;
 
 import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
-import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
+import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_4;
 import static java.time.Duration.ofSeconds;
 import static java.util.stream.Collectors.joining;
 import static org.feuyeux.ai.langchain.hellolangchain.OpenApi.getKey;
@@ -14,8 +14,8 @@ import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.PromptTemplate;
 import dev.langchain4j.model.openai.OpenAiChatModel;
@@ -47,8 +47,7 @@ public class RetrievalTest {
   @Test
   public void givenDocument_whenPrompted_thenValidResponse() {
     Document document = loadDocument(Paths.get(SIMPSON_S_ADVENTURES_TXT), new TextDocumentParser());
-    DocumentSplitter splitter =
-        DocumentSplitters.recursive(100, 0, new OpenAiTokenizer(GPT_3_5_TURBO));
+    DocumentSplitter splitter = DocumentSplitters.recursive(100, 0, new OpenAiTokenizer(GPT_4));
     List<TextSegment> segments = splitter.split(document);
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
