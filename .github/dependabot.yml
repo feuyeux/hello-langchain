@@ -5,14 +5,6 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pub"
-    directory: "hello-langchain-dart"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "gomod"
-    directory: "hello-langchain-go"
-    schedule:
-      interval: "daily"
   - package-ecosystem: "maven"
     directory: "hello-langchain-java"
     schedule:
@@ -27,5 +19,13 @@ updates:
       interval: "daily"
   - package-ecosystem: "cargo"
     directory: "hello-langchain-rust"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "hello-langchain-dart"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "gomod"
+    directory: "hello-langchain-go"
     schedule:
       interval: "daily"
