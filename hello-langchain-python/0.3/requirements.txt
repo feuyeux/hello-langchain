@@ -1,6 +1,12 @@
-langchain-core==0.3.24
+langchain-core==0.3.25
 langchain==0.3.11
 langchain-community==0.3.11
 langchain-ollama==0.2.1
 langgraph==0.2.59
 grandalf==0.8
+python-dotenv==1.0.1
+#
+openai
+httpx
+httpx-sse
+PyJWT
