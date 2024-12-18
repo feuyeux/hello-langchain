@@ -3,6 +3,7 @@ from langchain_ollama.llms import OllamaLLM
 from langchain_community.chat_models import ChatZhipuAI
 from langchain_community.chat_models.moonshot import MoonshotChat
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_community.chat_models import QianfanChatEndpoint
 import os
 from dotenv import load_dotenv
 
@@ -11,6 +12,9 @@ load_dotenv()
 print(f"{os.environ["ZHIPUAI_API_KEY"]}")
 # https://platform.moonshot.cn/console/api-keys
 print(f"{os.environ["MOONSHOT_API_KEY"]}")
+# 
+print(f"{os.environ["QIANFAN_ACCESS_KEY"]}")
+print(f"{os.environ["QIANFAN_SECRET_KEY"]}")
 
 template = """你是顶级的短片作家，
 请根据{title}的内容，使用中文写一篇50字的精品短文，
@@ -44,11 +48,22 @@ def kimi():
     chain = prompt | kimi_model
     return chain.invoke({"title": "窗外"})
 
+def wenxin():
+    wenxin_model = QianfanChatEndpoint(
+            model="ERNIE-3.5-8K",
+            temperature=0.2,
+            timeout=30,
+        )
+    chain = prompt | wenxin_model
+    return chain.invoke({"title": "窗外"})
 
+wenxin_response = wenxin()
 zhipu_response = zhipu()
 kimi_response = kimi()
 llama_response = llama()
 
+print("Wenxin model response:\n" + "-"*20)
+print(wenxin_response)
 print("Zhipu model response:\n" + "-"*20)
 print(zhipu_response)
 print("\nKimi model response:\n" + "-"*20)
