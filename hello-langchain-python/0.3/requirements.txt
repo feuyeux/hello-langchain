@@ -6,7 +6,7 @@ langgraph==0.2.60
 grandalf==0.8
 python-dotenv==1.0.1
 #
-openai==1.58.1
+openai==1.59.2
 httpx
 httpx-sse
 PyJWT
