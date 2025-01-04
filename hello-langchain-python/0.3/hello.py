@@ -4,6 +4,7 @@ from langchain_community.chat_models import ChatZhipuAI
 from langchain_community.chat_models.moonshot import MoonshotChat
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_community.chat_models import QianfanChatEndpoint
+from langchain_openai import ChatOpenAI
 import os
 from dotenv import load_dotenv
 
@@ -57,16 +58,32 @@ def wenxin():
     chain = prompt | wenxin_model
     return chain.invoke({"title": "窗外"})
 
-wenxin_response = wenxin()
-zhipu_response = zhipu()
-kimi_response = kimi()
-llama_response = llama()
+def deepseek():
+    llm = ChatOpenAI(
+        model='deepseek-chat', 
+        openai_api_key=os.environ["DS_API_KEY"], 
+        openai_api_base='https://api.deepseek.com',
+        max_tokens=1024
+    )
+    chain = prompt | llm
+    return chain.invoke({"title": "窗外"})
 
+wenxin_response = wenxin()
 print("Wenxin model response:\n" + "-"*20)
 print(wenxin_response)
+
+zhipu_response = zhipu()
 print("Zhipu model response:\n" + "-"*20)
 print(zhipu_response)
+
+kimi_response = kimi()
 print("\nKimi model response:\n" + "-"*20)
 print(kimi_response)
+
+deepseek_response = deepseek()
+print("\nDeepseek model response:\n" + "-"*20)
+print(deepseek_response)
+
 print("\nLlama model response:\n" + "-"*20)
-print(llama_response)
+print(llama())
+
