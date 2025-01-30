@@ -1,7 +1,7 @@
 langchain-core==0.3.32
 langchain==0.3.17
 langchain-community==0.3.16
-langchain-ollama==0.2.2
+langchain-ollama==0.2.3
 langchain-openai==0.3.2
 langgraph==0.2.68
 grandalf==0.8
