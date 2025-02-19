@@ -1,4 +1,4 @@
-langchain-core==0.3.35
+langchain-core==0.3.36
 langchain==0.3.19
 langchain-community==0.3.17
 langchain-ollama==0.2.3
