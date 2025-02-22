@@ -6,14 +6,15 @@ use langchain_rust::{fmt_message, fmt_template, message_formatter, prompt_args, 
 
 #[tokio::main]
 async fn main() {
-    let ollama = Ollama::default().with_model("llama3.2");
+    let ollama = Ollama::default().with_model("mistral-nemo");
 
     let prompt = message_formatter![
         fmt_message!(Message::new_system_message(
-            "你是顶级的短片作家，请根据{title}的内容，用中文写一篇50字的精品短文，然后翻译成英文。"
+            "根据{sentence}的内容，翻译成英语和法语，每种语言占一行。"
         )),
         fmt_template!(HumanMessagePromptTemplate::new(template_fstring!(
-            "{title}", "title"
+            "{sentence}",
+            "sentence"
         ))),
     ];
 
@@ -23,9 +24,11 @@ async fn main() {
         .build()
         .unwrap();
 
-    let title = "窗外";
-    let response = chain.invoke(prompt_args! {"title" => title}).await.unwrap();
-
+    let sentence = "飞光飞光，劝尔一杯酒。吾不识青天高，黄地厚。";
+    let response = chain
+        .invoke(prompt_args! {"sentence" => sentence})
+        .await
+        .unwrap();
     for line in response.lines() {
         println!("{}", line);
     }
