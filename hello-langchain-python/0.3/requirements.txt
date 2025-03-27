@@ -2,7 +2,7 @@ langchain-core==0.3.48
 langchain==0.3.21
 langchain-community==0.3.20
 langchain-ollama==0.3.0
-langchain-openai==0.3.10
+langchain-openai==0.3.11
 langgraph==0.3.20
 grandalf==0.8
 python-dotenv==1.1.0
