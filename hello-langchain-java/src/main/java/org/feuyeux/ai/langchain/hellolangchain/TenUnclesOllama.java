@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author feuyeux
  */
 @Slf4j
-public class TenUncles {
+public class TenUnclesOllama {
   public static void main(String[] args) {
     PromptTemplate promptTemplate = PromptTemplate.from("根据{{message}}中的描述告诉我，钱是被谁偷的，钱是谁的。");
 

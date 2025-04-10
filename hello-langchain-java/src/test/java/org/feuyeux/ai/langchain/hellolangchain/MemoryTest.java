@@ -3,7 +3,7 @@ package org.feuyeux.ai.langchain.hellolangchain;
 import static dev.langchain4j.data.message.UserMessage.userMessage;
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.feuyeux.ai.langchain.hellolangchain.OpenApi.getKey;
+import static org.feuyeux.ai.langchain.hellolangchain.utils.OpenApi.getKey;
 
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.memory.ChatMemory;

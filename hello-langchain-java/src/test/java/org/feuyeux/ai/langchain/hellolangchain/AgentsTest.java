@@ -1,7 +1,7 @@
 package org.feuyeux.ai.langchain.hellolangchain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.feuyeux.ai.langchain.hellolangchain.OpenApi.getKey;
+import static org.feuyeux.ai.langchain.hellolangchain.utils.OpenApi.getKey;
 
 import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;

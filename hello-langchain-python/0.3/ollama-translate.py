@@ -7,7 +7,7 @@ template = """你是顶级的短片作家，
 prompt = ChatPromptTemplate.from_template(template)
 
 llama_model = OllamaLLM(
-    model="llama3.3",
+    model="llama3.2",
     base_url="http://localhost:11434",
     temperature=0,
 )

@@ -1,8 +1,6 @@
 module hello-langchain
 
-go 1.22.0
-
-toolchain go1.23.1
+go 1.23
 
 require github.com/tmc/langchaingo v0.1.13
 

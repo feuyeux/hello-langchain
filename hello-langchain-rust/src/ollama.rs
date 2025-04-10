@@ -6,7 +6,7 @@ use langchain_rust::{fmt_message, fmt_template, message_formatter, prompt_args, 
 
 #[tokio::main]
 async fn main() {
-    let ollama = Ollama::default().with_model("llama3.2");
+    let model = Ollama::default().with_model("llama3.2");
 
     let prompt = message_formatter![
         fmt_message!(Message::new_system_message(
@@ -19,7 +19,7 @@ async fn main() {
 
     let chain = LLMChainBuilder::new()
         .prompt(prompt)
-        .llm(ollama.clone())
+        .llm(model.clone())
         .build()
         .unwrap();
 

@@ -8,7 +8,7 @@ load_dotenv()
 
 # https://open.bigmodel.cn/usercenter/proj-mgmt/rate-limits
 # https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys
-print(f"ZHIPUAI_API_KEY={os.environ["ZHIPUAI_API_KEY"]}")
+# print(f"ZHIPUAI_API_KEY={os.environ["ZHIPUAI_API_KEY"]}")
 llm = ChatZhipuAI(
     model="GLM-4-Plus",
     temperature=0,

@@ -4,7 +4,7 @@ import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.load
 import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_4;
 import static java.time.Duration.ofSeconds;
 import static java.util.stream.Collectors.joining;
-import static org.feuyeux.ai.langchain.hellolangchain.OpenApi.getKey;
+import static org.feuyeux.ai.langchain.hellolangchain.utils.OpenApi.getKey;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentSplitter;

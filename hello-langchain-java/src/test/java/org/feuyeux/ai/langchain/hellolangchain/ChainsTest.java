@@ -2,7 +2,7 @@ package org.feuyeux.ai.langchain.hellolangchain;
 
 import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
 import static java.time.Duration.ofSeconds;
-import static org.feuyeux.ai.langchain.hellolangchain.OpenApi.getKey;
+import static org.feuyeux.ai.langchain.hellolangchain.utils.OpenApi.getKey;
 
 import dev.langchain4j.chain.ConversationalRetrievalChain;
 import dev.langchain4j.data.document.Document;

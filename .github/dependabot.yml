@@ -21,6 +21,12 @@ updates:
     directory: "hello-langchain-rust"
     schedule:
       interval: "daily"
+    # Added additional configuration to improve Rust updates
+    open-pull-requests-limit: 10
+    versioning-strategy: auto
+    allow:
+      - dependency-type: direct
+      - dependency-type: indirect
   - package-ecosystem: "pub"
     directory: "hello-langchain-dart"
     schedule:

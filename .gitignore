@@ -21,3 +21,5 @@ test/
 go.sum
 .dart_tool/
 package-lock.json
+.env.sh
+.env.bat

@@ -4,8 +4,7 @@ cd "$(
     pwd -P
 )/" || exit
 set -e
-#cat "$HOME"/.gitconfig
-#cargo clean
+
 cargo fmt
 cargo build
-cargo run --bin ollama
+cargo run --bin openai
