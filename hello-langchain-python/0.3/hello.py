@@ -90,17 +90,17 @@ try:
     print("\nKimi model response:\n" + "-"*20)
     print(kimi_response)
 except Exception as e:
-    print(f"Zhipu error occurred: {e}")
+    print(f"Kimi error occurred: {e}")
 
 try:
     deepseek_response = deepseek()
     print("\nDeepseek model response:\n" + "-"*20)
     print(deepseek_response)
 except Exception as e:
-    print(f"Zhipu error occurred: {e}")
+    print(f"Deepseek error occurred: {e}")
 
 try:
     print("\nLlama model response:\n" + "-"*20)
     print(llama())
 except Exception as e:
-    print(f"Zhipu error occurred: {e}")
+    print(f"Llama error occurred: {e}")
