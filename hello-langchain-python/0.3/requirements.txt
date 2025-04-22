@@ -1,6 +1,6 @@
 langchain-core==0.3.55
 langchain==0.3.23
-langchain-community==0.3.21
+langchain-community==0.3.22
 langchain-ollama==0.3.2
 langchain-openai==0.3.14
 langgraph==0.3.31
