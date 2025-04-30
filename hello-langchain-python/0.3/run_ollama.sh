@@ -5,4 +5,4 @@ cd "$(
 )/" || exit
 set -e
 source lc_env/bin/activate
-npython ollama-translate.py
+python ollama-translate.py
