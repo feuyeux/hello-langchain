@@ -7,7 +7,6 @@ import platform
 import sys
 import time
 
-
 results_dir = "ollama_log"
 os.makedirs(results_dir, exist_ok=True)
 print(f"系统信息: {platform.system()} {platform.node()} {platform.release()} {platform.version()} {platform.machine()} {platform.processor()} Python {sys.version}")
@@ -27,6 +26,7 @@ try:
             model=model_name,
             base_url="http://localhost:11434",
             temperature=0,
+            num_gpu=1,
         )
         chain = prompt | llama_model
         model_results = []
@@ -46,9 +46,10 @@ try:
             except Exception as e:
                 result = f"错误: {str(e)}"
                 success = False
-        
-            print(f"执行时间: {execution_time:.2f}s, 系统指标: {metrics}, 执行结果: {result}")
-            
+
+            print(
+                f"执行时间: {execution_time:.2f}s, 系统指标: {metrics}, 执行结果: {result}")
+
             model_results.append({
                 'language': lang,
                 'output': result,
@@ -59,7 +60,7 @@ try:
 
         model_filename = model_name.replace(':', '_')
         with open(f"{results_dir}/{model_filename}_performance.json", 'w', encoding='utf-8') as f:
-            json.dump(model_results, f, ensure_ascii=False, indent=2) 
+            json.dump(model_results, f, ensure_ascii=False, indent=2)
 except KeyboardInterrupt:
     print("\n测试被用户中断")
 except Exception as e:

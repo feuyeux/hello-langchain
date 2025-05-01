@@ -3,19 +3,24 @@
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd -P)
 cd "$SCRIPT_DIR" || exit
 
+# Only support Unix-like systems (Linux/macOS)
 if [ "$(uname -s)" = "Linux" ] || [ "$(uname -s)" = "Darwin" ]; then
-    python -m venv lc_env
+    if [ ! -d "lc_env" ]; then
+        echo "Setting up virtual environment..."
+        python -m venv lc_env
+    else
+        echo "Virtual environment already exists, skipping creation..."
+    fi
+
     . "lc_env/bin/activate"
     which python
+    echo "Upgrading pip..."
     pip install --upgrade pip
-elif [ "$(uname -s)" = "CYGWIN" ] || [ "$(uname -s)" = "MSYS" ] || [ "$(uname -s)" = "MINGW" ] || [[ "$(uname -s)" == MINGW64_NT* ]]; then
-    python -m venv lc_win_env
-    . "lc_win_env/Scripts/activate"
-    which python
-    python.exe -m pip install --upgrade pip
 else
-    echo "Unsupported OS"
+    echo "Unsupported OS. Use install.bat for Windows."
     exit 1
 fi
-# 安装依赖
+
+echo "Installing dependencies..."
 pip install -r requirements.txt
+echo "Setup complete!"

@@ -1,4 +1,4 @@
-langchain-core==0.3.55
+langchain-core==0.3.56
 langchain==0.3.24
 langchain-community==0.3.23
 langchain-ollama==0.3.2
@@ -6,7 +6,7 @@ langchain-openai==0.3.14
 langgraph==0.4.0
 grandalf==0.8
 python-dotenv==1.1.0
-psutil==5.9.8
+psutil==7.0.0
 #
 openai==1.76.2
 httpx
@@ -14,5 +14,3 @@ httpx-sse
 PyJWT
 #
 qianfan==0.4.12.3
-#
-psutil==5.9.8
