@@ -11,7 +11,7 @@ results_dir = "ollama_log"
 os.makedirs(results_dir, exist_ok=True)
 print(f"系统信息: {platform.system()} {platform.node()} {platform.release()} {platform.version()} {platform.machine()} {platform.processor()} Python {sys.version}")
 
-model_names = ["llama3","qwen2.5","qwen3:8b", "qwen3:14b", "qwen3:30b", "qwen3:32b"]
+model_names = ["qwen3:8b", "qwen3:14b", "qwen3:30b", "qwen3:32b"]
 
 template = """你是顶级的短片作家，
 使用{lang},请根据{title}的内容，写一篇50字的精品短文"""
