@@ -5,8 +5,9 @@ template = """你是顶级的短片作家，
 使用{lang},请根据{title}的内容，写一篇50字的精品短文"""
 prompt = ChatPromptTemplate.from_template(template)
 
+model_name = "qwen3:14b"
 llama_model = OllamaLLM(
-    model="qwen3:8b",
+    model=model_name,
     base_url="http://localhost:11434",
     temperature=0,
 )

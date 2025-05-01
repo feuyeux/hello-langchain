@@ -6,6 +6,7 @@ langchain-openai==0.3.14
 langgraph==0.4.0
 grandalf==0.8
 python-dotenv==1.1.0
+psutil==5.9.8
 #
 openai==1.76.2
 httpx
@@ -13,3 +14,5 @@ httpx-sse
 PyJWT
 #
 qianfan==0.4.12.3
+#
+psutil==5.9.8
