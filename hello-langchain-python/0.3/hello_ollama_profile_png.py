@@ -21,16 +21,21 @@ gpu_statuses = {model: [] for model in models}  # For GPU information
 # Load data from JSON files
 for model in models:
     filepath = os.path.join(log_dir, f"{model}_performance.json")
-    with open(filepath, 'r') as f:
+    with open(filepath, 'r', encoding='utf-8') as f:
         data = json.load(f)
         
     for entry in data:
         execution_times[model].append(entry["execution_time"])
-        cpu_usages[model].append(entry["metrics"]["cpu_percent"])
-        memory_usages[model].append(entry["metrics"]["memory_used_mb"])
+        metrics = entry.get("metrics", {})
+        cpu_usages[model].append(metrics.get("cpu_percent", 0))
+        memory_usages[model].append(metrics.get("memory_used_mb", 0))
         # Store GPU information (for Apple Silicon, it's integrated with CPU)
-        if "gpu_info" in entry["metrics"]:
-            gpu_statuses[model].append(entry["metrics"]["gpu_info"][0]["utilization"])
+        if "gpu_info" in metrics and metrics["gpu_info"]:
+            gpu_info = metrics["gpu_info"][0]
+            utilization = gpu_info.get("utilization_percent", None)
+            gpu_statuses[model].append(utilization)
+        else:
+            gpu_statuses[model].append(None)
 
 # Ensure ollama_log directory exists
 os.makedirs(log_dir, exist_ok=True)
