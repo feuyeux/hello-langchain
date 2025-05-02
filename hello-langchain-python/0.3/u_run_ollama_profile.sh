@@ -4,5 +4,6 @@ cd "$(
     pwd -P
 )/" || exit
 set -e
+
 source lc_env/bin/activate
 python hello_ollama_profile.py
