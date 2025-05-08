@@ -3,7 +3,7 @@ langchain==0.3.25
 langchain-community==0.3.23
 langchain-ollama==0.3.2
 langchain-openai==0.3.16
-langgraph==0.4.2
+langgraph==0.4.3
 grandalf==0.8
 python-dotenv==1.1.0
 psutil==7.0.0
