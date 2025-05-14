@@ -6,4 +6,4 @@ cd "$(
 set -e
 
 source lc_env/bin/activate
-python hello_ollama_profile.py
+python hello_profile.py

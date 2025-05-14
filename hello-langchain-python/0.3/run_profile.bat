@@ -3,7 +3,9 @@
 REM Change to the directory where the script is located
 cd /d "%~dp0"
 
+REM Set console to UTF-8 encoding
+chcp 65001
+
 call lc_win_env\Scripts\activate.bat
 which python
-echo "Running hello_ollama_profile.py"
-python hello_ollama_profile.py
+python hello_profile.py
