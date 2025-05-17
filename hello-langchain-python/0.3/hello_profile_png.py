@@ -7,10 +7,11 @@ import os
 models = [
     "qwen3_0.6b",
     "qwen3_1.7b",
+    "qwen3_4b",
     "qwen3_8b",
+    #   "qwen3_8b_mlx",
     "qwen3_14b",
-    "qwen3_30b_a3b",
-    "qwen3_30b"
+    "qwen3_30b_a3b"
 ]
 log_dir = "profile_log"
 

@@ -1,17 +1,22 @@
+# LangChain related packages
 langchain-core==0.3.60
 langchain==0.3.25
 langchain-community==0.3.24
 langchain-ollama==0.3.3
 langchain-openai==0.3.17
 langgraph==0.4.5
-grandalf==0.8
+
+# Utility packages
 python-dotenv==1.1.0
 psutil==7.0.0
-#
+matplotlib==3.8.3
+
+# API clients
 openai==1.78.1
-httpx
-httpx-sse
-PyJWT
-#
+httpx==0.27.0
+httpx-sse==0.4.0
 qianfan==0.4.12.3
-matplotlib
+
+# Others
+grandalf==0.8     # Required by langgraph
+PyJWT==2.8.0      # Required for authentication
