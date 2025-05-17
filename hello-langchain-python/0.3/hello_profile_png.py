@@ -5,10 +5,12 @@ import os
 
 # Model names and corresponding file paths
 models = [
-    "qwen3_8b",
-    "qwen3_14b",
-    "qwen3_30b",
-    "qwen3_32b"
+    "qwen3_0.6b",
+    "qwen3_1.7b",
+    "qwen3-8b",
+    "qwen3-14b",
+    "qwen3-30b-a3b",
+    "qwen3-32b"
 ]
 log_dir = "profile_log"
 
@@ -32,8 +34,14 @@ for model in models:
         # Store GPU information (for Apple Silicon, it's integrated with CPU)
         if "gpu_info" in metrics and metrics["gpu_info"]:
             gpu_info = metrics["gpu_info"][0]
-            utilization = gpu_info.get("utilization_percent", None)
-            gpu_statuses[model].append(utilization)
+            # For Apple Silicon, set a conventional value since utilization isn't directly measurable
+            if gpu_info.get("apple_silicon", False):
+                # Using CPU usage as a proxy for integrated GPU on Apple Silicon
+                gpu_statuses[model].append(metrics.get(
+                    "cpu_percent", 0) * 0.8)  # Estimated GPU usage
+            else:
+                utilization = gpu_info.get("utilization_percent", None)
+                gpu_statuses[model].append(utilization)
         else:
             gpu_statuses[model].append(None)
 
@@ -214,5 +222,5 @@ plt.close()
 
 # Add a note about GPU usage
 print(
-    f"Note: For Apple Silicon GPU, the utilization is '{gpu_statuses[models[0]][0]}'")
+    f"Note: For Apple Silicon GPU, the utilization is approximated using CPU usage as a proxy")
 print(f"Charts have been saved as PNG files in the {log_dir} directory.")
