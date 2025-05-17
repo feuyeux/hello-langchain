@@ -7,10 +7,10 @@ import os
 models = [
     "qwen3_0.6b",
     "qwen3_1.7b",
-    "qwen3-8b",
-    "qwen3-14b",
-    "qwen3-30b-a3b",
-    "qwen3-32b"
+    "qwen3_8b",
+    "qwen3_14b",
+    "qwen3_30b_a3b",
+    "qwen3_30b"
 ]
 log_dir = "profile_log"
 
@@ -23,44 +23,64 @@ gpu_statuses = {model: [] for model in models}  # For GPU information
 # Load data from JSON files
 for model in models:
     filepath = os.path.join(log_dir, f"{model}_performance.json")
-    with open(filepath, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
 
-    for entry in data:
-        execution_times[model].append(entry["execution_time"])
-        metrics = entry.get("metrics", {})
-        cpu_usages[model].append(metrics.get("cpu_percent", 0))
-        memory_usages[model].append(metrics.get("memory_used_mb", 0))
-        # Store GPU information (for Apple Silicon, it's integrated with CPU)
-        if "gpu_info" in metrics and metrics["gpu_info"]:
-            gpu_info = metrics["gpu_info"][0]
-            # For Apple Silicon, set a conventional value since utilization isn't directly measurable
-            if gpu_info.get("apple_silicon", False):
-                # Using CPU usage as a proxy for integrated GPU on Apple Silicon
-                gpu_statuses[model].append(metrics.get(
-                    "cpu_percent", 0) * 0.8)  # Estimated GPU usage
+        for entry in data:
+            execution_times[model].append(entry["execution_time"])
+            metrics = entry.get("metrics", {})
+            cpu_usages[model].append(metrics.get("cpu_percent", 0))
+            memory_usages[model].append(metrics.get("memory_used_mb", 0))
+            # Store GPU information (for Apple Silicon, it's integrated with CPU)
+            if "gpu_info" in metrics and metrics["gpu_info"]:
+                gpu_info = metrics["gpu_info"][0]
+                # For Apple Silicon, set a conventional value since utilization isn't directly measurable
+                if gpu_info.get("apple_silicon", False):
+                    # Using CPU usage as a proxy for integrated GPU on Apple Silicon
+                    gpu_statuses[model].append(metrics.get(
+                        "cpu_percent", 0) * 0.8)  # Estimated GPU usage
+                else:
+                    utilization = gpu_info.get("utilization_percent", None)
+                    gpu_statuses[model].append(utilization)
             else:
-                utilization = gpu_info.get("utilization_percent", None)
-                gpu_statuses[model].append(utilization)
-        else:
-            gpu_statuses[model].append(None)
+                gpu_statuses[model].append(None)
+    except FileNotFoundError:
+        print(f"Warning: File not found: {filepath} - Skipping this model")
+        # Remove the model from our lists since it has no data
+        models.remove(model)
+        del execution_times[model]
+        del cpu_usages[model]
+        del memory_usages[model]
+        del gpu_statuses[model]
 
 # Ensure ollama_log directory exists
 os.makedirs(log_dir, exist_ok=True)
 
+# Skip processing if there are no valid models with data
+if not models:
+    print("No valid model data found in the specified directory. Exiting.")
+    exit()
+
 # Calculate max and median values for each metric
-max_execution = [max(execution_times[model]) for model in models]
-median_execution = [np.median(execution_times[model]) for model in models]
+max_execution = np.array([max(execution_times[model])
+                         if execution_times[model] else 0 for model in models])
+median_execution = np.array([np.median(
+    execution_times[model]) if execution_times[model] else 0 for model in models])
 
-max_cpu = [max(cpu_usages[model]) for model in models]
-median_cpu = [np.median(cpu_usages[model]) for model in models]
+max_cpu = np.array(
+    [max(cpu_usages[model]) if cpu_usages[model] else 0 for model in models])
+median_cpu = np.array([np.median(cpu_usages[model])
+                      if cpu_usages[model] else 0 for model in models])
 
-max_memory = [max(memory_usages[model]) for model in models]
-median_memory = [np.median(memory_usages[model]) for model in models]
+max_memory = np.array(
+    [max(memory_usages[model]) if memory_usages[model] else 0 for model in models])
+median_memory = np.array([np.median(memory_usages[model])
+                         if memory_usages[model] else 0 for model in models])
 
 # Convert memory to GB for better readability
-max_memory_gb = [mem/1024 for mem in max_memory]
-median_memory_gb = [mem/1024 for mem in median_memory]
+max_memory_gb = max_memory/1024
+median_memory_gb = median_memory/1024
 
 # Set up plot parameters
 x = np.arange(len(models))

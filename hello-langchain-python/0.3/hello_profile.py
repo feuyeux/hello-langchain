@@ -25,7 +25,7 @@ print(f"python version:  {sys.version}")
 
 # model_names = ["qwen3:8b", "qwen3:14b", "qwen3:30b", "qwen3:32b"]
 model_names = ["qwen3-0.6b", "qwen3-1.7b", "qwen3-4b",
-               "qwen3-8b", "qwen3-8b-mlx", "qwen3-14b", "qwen3-30b"]
+               "qwen3-8b", "qwen3-8b-mlx", "qwen3-14b", "qwen3-30b-a3b"]
 # model_names = ["qwen3-0.6b", "qwen3-1.7b"]
 
 template = """你是顶级的短片作家，
@@ -81,6 +81,12 @@ try:
             model=model_name,
             timeout=180
         )
+        try:
+            warmup_prompt = prompt.format(title="预热", lang="汉语")
+            lm_studio_model.invoke(warmup_prompt)
+        except Exception as e:
+            print(f"模型预热时出现错误: {str(e)}")
+            pass
         chain = prompt | lm_studio_model
         model_results = []
         for lang in languages:
