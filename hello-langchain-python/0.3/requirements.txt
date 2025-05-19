@@ -9,7 +9,7 @@ langgraph==0.4.5
 # Utility packages
 python-dotenv==1.1.0
 psutil==7.0.0
-matplotlib==3.8.3
+matplotlib==3.9.4
 
 # API clients
 openai==1.78.1
