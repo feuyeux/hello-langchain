@@ -1,5 +1,5 @@
 # LangChain related packages
-langchain-core==0.3.65
+langchain-core==0.3.66
 langchain==0.3.25
 langchain-community==0.3.25
 langchain-ollama==0.3.3
