@@ -14,7 +14,7 @@ matplotlib==3.9.4
 # API clients
 openai==1.91.0
 httpx==0.28.1
-httpx-sse==0.4.0
+httpx-sse==0.4.1
 qianfan==0.4.12.3
 
 # Others
