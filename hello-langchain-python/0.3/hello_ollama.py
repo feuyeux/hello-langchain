@@ -8,7 +8,7 @@ def main():
     使用{lang},请根据{title}的内容，写一篇50字的精品短文"""
     prompt = ChatPromptTemplate.from_template(template)
 
-    model_name = "qwen3:14b"
+    model_name = "qwen3:8b"
     title = "窗外"
     languages = ["英语", "法语", "俄语", "汉语"]
     
@@ -18,7 +18,7 @@ def main():
             model=model_name,
             base_url="http://localhost:11434",
             temperature=0,
-            request_timeout=60.0,  # Set a reasonable timeout
+            # Set a reasonable timeout
         )
         
         chain = prompt | llama_model

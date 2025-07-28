@@ -12,7 +12,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j -->
-    <langchain4j.version>0.36.2</langchain4j.version>
+    <langchain4j.version>1.1.0</langchain4j.version>
 
     <!-- used only in dependency management to force this version, not included as a direct dependency -->
     <junit.version>4.13.2</junit.version>
@@ -38,29 +38,22 @@
     <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j</artifactId>
-      <version>${langchain4j.version}</version>
     </dependency>
-
-    <!-- langchain4j-xyz -->
     <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-embeddings</artifactId>
-      <version>${langchain4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-open-ai</artifactId>
-      <version>${langchain4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-ollama</artifactId>
-      <version>${langchain4j.version}</version>
     </dependency>
     <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
-      <version>${langchain4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-open-ai</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-ollama</artifactId>
     </dependency>
 
     <!-- logging -->
@@ -151,6 +144,18 @@
       <optional>true</optional>
     </dependency>
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>dev.langchain4j</groupId>
+        <artifactId>langchain4j-bom</artifactId>
+        <version>${langchain4j.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <plugins>

@@ -1,6 +1,7 @@
 package org.feuyeux.ai.langchain.hellolangchain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.feuyeux.ai.langchain.hellolangchain.HelloOllama.buildOllamaModel;
 import static org.feuyeux.ai.langchain.hellolangchain.utils.OpenApi.getKey;
 
 import dev.langchain4j.agent.tool.Tool;
@@ -39,9 +40,10 @@ public class AgentsTest {
 
   @Test
   public void givenServiceWithTools_whenPrompted_thenValidResponse() throws InterruptedException {
+    OpenAiChatModel chatModel = OpenAiChatModel.builder().apiKey(getKey()).build();
     Assistant assistant =
         AiServices.builder(Assistant.class)
-            .chatLanguageModel(OpenAiChatModel.withApiKey(getKey()))
+                .chatModel(buildOllamaModel())
             .tools(new Calculator())
             .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
             .build();

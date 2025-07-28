@@ -25,7 +25,7 @@ prompt = ChatPromptTemplate.from_template(template)
 
 def llama():
     llama_model = OllamaLLM(
-        model="llama3.2",
+        model="qwen2.5",
         base_url="http://localhost:11434",
         temperature=0,
     )

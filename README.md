@@ -149,13 +149,16 @@ Outside the window, the sun is shining brightly with vibrant flowers blooming. B
 
 ```javascript
 const prompt = ChatPromptTemplate.fromMessages([
-    ["human", "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。"],
+  [
+    "human",
+    "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。",
+  ],
 ]);
-const model = new Ollama({model: "llama3.2"});
+const model = new Ollama({ model: "llama3.2" });
 const outputParser = new StringOutputParser();
 const chain = prompt.pipe(model).pipe(outputParser);
 const response = await chain.invoke({
-    title: "窗外",
+  title: "窗外",
 });
 console.log(response);
 ```
@@ -177,7 +180,7 @@ Outside the window, as autumn begins, golden sunlight bathes the earth. The gree
 
 ## Documents
 
-- [Langchain4j tutorials](https://langchain4j.github.io/langchain4j/docs/tutorials)
+- [Langchain4j](https://docs.langchain4j.dev/)
 - <https://docs.rs/crate/langchain-rust/latest>
 - <https://pub.dev/packages/langchain>
 - <https://docs.langchain4j.dev/>
