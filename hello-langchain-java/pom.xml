@@ -27,7 +27,7 @@
     <!-- overwriting in the slf4j and logback in the hibernate-jpa, spring-data-eclipselink.
     When updated to the latest version remove the version from that module-->
     <org.slf4j.version>2.0.17</org.slf4j.version>
-    <logback.version>1.5.18</logback.version>
+    <logback.version>1.5.19</logback.version>
 
     <!-- plugins -->
     <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
