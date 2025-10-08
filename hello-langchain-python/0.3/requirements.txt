@@ -1,7 +1,7 @@
 # LangChain related packages
 langchain-core==0.3.78
 langchain==0.3.27
-langchain-community==0.3.30
+langchain-community==0.3.31
 langchain-ollama==0.3.10
 langchain-openai==0.3.35
 langgraph==0.6.8
