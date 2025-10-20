@@ -4,7 +4,7 @@
   "description": "hello langchain",
   "main": "ollama.js",
   "dependencies": {
-    "@langchain/ollama": "^0.2.0",
+    "@langchain/ollama": "^1.0.0",
     "@langchain/openai": "^0.6.1",
     "dotenv": "^17.0.0",
     "langchain": "^0.3.6"
