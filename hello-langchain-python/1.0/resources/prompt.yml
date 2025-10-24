@@ -1,0 +1,13 @@
+_type: prompt
+input_variables:
+  - context
+  - question
+template: |
+  Context: {context}
+  Question: {question}
+  Let's approach this step by step:
+  1) First, analyze the context
+  2) Then, consider the question
+  3) Finally, provide the answer
+
+  Answer:

@@ -1,20 +1,20 @@
 # LangChain related packages
-langchain-core==0.3.72
-langchain==0.3.27
-langchain-community==0.3.27
-langchain-ollama==0.3.6
-langchain-openai==0.3.28
-langgraph==0.5.4
+langchain-core==1.0.0
+langchain==1.0.2
+langchain-community==0.4
+langchain-ollama==1.0.0
+langchain-openai==1.0.1
+langgraph==1.0.1
 
 # Utility packages
 python-dotenv==1.1.1
-psutil==7.0.0
-matplotlib==3.9.4
+psutil==7.1.1
+matplotlib==3.10.7
 
 # API clients
-openai==1.97.1
+openai==2.6.0
 httpx==0.28.1
-httpx-sse==0.4.1
+httpx-sse==0.4.3
 qianfan==0.4.12.3
 
 # Others

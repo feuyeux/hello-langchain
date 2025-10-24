@@ -14,7 +14,7 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "pip"
-    directory: "hello-langchain-python/0.3"
+    directory: "hello-langchain-python/1.0"
     schedule:
       interval: "daily"
   - package-ecosystem: "cargo"
