@@ -6,7 +6,7 @@ use langchain_rust::{fmt_message, fmt_template, message_formatter, prompt_args, 
 
 #[tokio::main]
 async fn main() {
-    let model = Ollama::default().with_model("llama3.2");
+    let model = Ollama::default().with_model("qwen2.5");
 
     let prompt = message_formatter![
         fmt_message!(Message::new_system_message(

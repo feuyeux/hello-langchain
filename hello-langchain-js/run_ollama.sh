@@ -4,5 +4,4 @@ cd "$(
     pwd -P
 )/" || exit
 set -e
-source .env.sh
 node ollama.js

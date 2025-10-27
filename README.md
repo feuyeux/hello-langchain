@@ -1,10 +1,33 @@
-# Hello Langchain🦜️
+# Hello LangChain 🦜️
 
 A straightforward, equally capable demonstration for tracking the evolution of multiple programming languages across the iterations of LangChain.
 
-## Quick start
 
-### 1 python
+## Resources
+
+### SDK
+
+1. [LangChain Python](https://github.com/langchain-ai/langchain)
+2. [Langchain4j](https://github.com/langchain4j/langchain4j)
+3. [LangChain Rust](https://github.com/Abraxas-365/langchain-rust)
+4. [LangChain Go](https://github.com/tmc/langchaingo)
+5. [LangChain Dart](https://github.com/davidmigloz/langchain_dart)
+6. [LangChain JS](https://github.com/langchain-ai/langchainjs)
+
+### Documentation
+
+- [LangChain Python](https://python.langchain.com/docs/introduction/)
+- [Langchain4j](https://docs.langchain4j.dev/)
+- [LangChain Rust](https://docs.rs/crate/langchain-rust/latest)
+- [LangChain Go](https://docs.langchain.com/)
+- [LangChain Dart](https://pub.dev/packages/langchain)
+- [LangChain JS](https://js.langchain.com/docs/introduction/)
+- [Gemini](https://ai.google.dev/tutorials/python_quickstart)
+
+
+## Quick Start
+
+### 1. Python
 
 `hello-langchain-python\0.3\run.sh`
 
@@ -17,7 +40,7 @@ template = """你是顶级的短片作家，
 然后翻译成英文。"""
 prompt = ChatPromptTemplate.from_template(template)
 model = OllamaLLM(
-    model="llama3.2",
+    model="qwen2.5",
     base_url="http://localhost:11434"
 )
 chain = prompt | model
@@ -31,7 +54,7 @@ print(response)
 Outside the window is a peaceful world, with sunlight streaming on the green trees and a gentle breeze caressing the flowers. On the grass, children laugh and play, their joyful voices echoing throughout the neighborhood. Birds soar freely in the sky, singing beautiful melodies. All of this makes me feel the beauty and hope of life.
 ```
 
-### 2 java
+### 2. Java
 
 ```java
 @Slf4j
@@ -40,7 +63,7 @@ public class HelloOllama {
     Prompt prompt =
         PromptTemplate.from("你是顶级的短片作家，请根据{{title}}的内容，写一篇50字的精品短文，然后翻译成英文。")
             .apply(Map.of("title", "窗外"));
-    String modelName = "llama3.2";
+    String modelName = "qwen2.5";
     ChatLanguageModel model =
         OllamaChatModel.builder().baseUrl("http://localhost:11434").modelName(modelName).build();
     String response = model.generate(prompt.text());
@@ -55,7 +78,7 @@ public class HelloOllama {
 Outside the window, the sun shines on the lush green leaves, while a gentle breeze caresses the cloud-like blossoms. The birds sing joyfully, seemingly narrating the wonders of nature. These scenes, like a magnificent painting, depict a life of tranquility and harmony. The world outside the window is truly beautiful!
 ```
 
-### 3 rust
+### 3. Rust
 
 ```rust
 #[tokio::main]
@@ -83,12 +106,12 @@ async fn main() -> Result<()> {
 The world outside the window is full of vitality and vigor. The sunlight sprinkles on the green trees, and the breeze gently brushes the flowers. Birds sing joy.
 ```
 
-### 4 go
+### 4. Go
 
 ```go
 func main() {
  ctx := context.Background()
- llm, err := ollama.New(ollama.WithModel("llama3.2"))
+ llm, err := ollama.New(ollama.WithModel("qwen2.5"))
  if err != nil {
   log.Fatal(err)
  }
@@ -111,7 +134,7 @@ func main() {
 }
 ```
 
-### 5 dart
+### 5. Dart
 
 ```dart
 main(List<String> args) async {
@@ -145,7 +168,7 @@ The gentle spring breeze brushes the earth as everything awakens. Tender branche
 Outside the window, the sun is shining brightly with vibrant flowers blooming. Birds are happily hopping, and small animals play on the grass. A tall tree stretches its branches and leaves in the gentle breeze, adding a touch of green to this beautiful world. The view outside the window is like a vivid painting, bringing a sense of tranquility and joy.
 ```
 
-### 6 nodejs
+### 6. Node.js
 
 ```javascript
 const prompt = ChatPromptTemplate.fromMessages([
@@ -154,7 +177,7 @@ const prompt = ChatPromptTemplate.fromMessages([
     "你是顶级的短片作家，请根据{title}的内容，写一篇50字的精品短文，然后翻译成英文。",
   ],
 ]);
-const model = new Ollama({ model: "llama3.2" });
+const model = new Ollama({ model: "qwen2.5" });
 const outputParser = new StringOutputParser();
 const chain = prompt.pipe(model).pipe(outputParser);
 const response = await chain.invoke({
@@ -168,23 +191,3 @@ console.log(response);
 
 Outside the window, as autumn begins, golden sunlight bathes the earth. The green leaves of trees sway gently, kissed by a gentle breeze, creating a picturesque sight. Birds soar through the sky, singing joyfully. This is nature’s symphony, enchanting and marvelous.
 ```
-
-## References
-
-1. [LangChain Dart](https://github.com/davidmigloz/langchain_dart)
-2. [LangChain Go](https://github.com/tmc/langchaingo)
-3. [Langchain4j](https://github.com/langchain4j/langchain4j)
-4. [LangChain JS](https://github.com/langchain-ai/langchainjs)
-5. [LangChain](https://github.com/langchain-ai/langchain)
-6. [LangChain Rust](https://github.com/Abraxas-365/langchain-rust)
-
-## Documents
-
-- [Langchain4j](https://docs.langchain4j.dev/)
-- <https://docs.rs/crate/langchain-rust/latest>
-- <https://pub.dev/packages/langchain>
-- <https://docs.langchain4j.dev/>
-- <https://js.langchain.com/docs/introduction/>
-- <https://python.langchain.com/docs/introduction/>
-- <https://docs.rs/crate/langchain-rust/latest>
-- [Gemini](https://ai.google.dev/tutorials/python_quickstart)

@@ -21,5 +21,5 @@ func main() {
 }
 
 func buildOllamaModel() ollama.Option {
-	return ollama.WithModel("llama3.2")
+	return ollama.WithModel("qwen2.5")
 }

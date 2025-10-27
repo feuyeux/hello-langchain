@@ -43,7 +43,7 @@ public class AgentsTest {
     OpenAiChatModel chatModel = OpenAiChatModel.builder().apiKey(getKey()).build();
     Assistant assistant =
         AiServices.builder(Assistant.class)
-                .chatModel(buildOllamaModel())
+            .chatModel(buildOllamaModel())
             .tools(new Calculator())
             .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
             .build();

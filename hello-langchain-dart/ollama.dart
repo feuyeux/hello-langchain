@@ -11,7 +11,7 @@ ChatOllama buildModel() {
   final llm = ChatOllama(
       baseUrl: 'http://localhost:11434/api',
       defaultOptions: const ChatOllamaOptions(
-        model: 'llama3.2',
+        model: 'qwen2.5',
         temperature: 0.7,
       ),
       encoding: 'cl100k_base');

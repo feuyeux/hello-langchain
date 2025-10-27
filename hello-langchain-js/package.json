@@ -4,10 +4,10 @@
   "description": "hello langchain",
   "main": "ollama.js",
   "dependencies": {
+    "@langchain/core": "^1.0.1",
     "@langchain/ollama": "^1.0.0",
-    "@langchain/openai": "^0.6.1",
-    "dotenv": "^17.0.0",
-    "langchain": "^0.3.6"
+    "@langchain/openai": "^1.0.0",
+    "langchain": "^1.0.1"
   },
   "type": "module",
   "license": "Apache-2.0"

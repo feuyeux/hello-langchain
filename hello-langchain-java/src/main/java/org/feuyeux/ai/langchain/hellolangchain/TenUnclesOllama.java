@@ -1,12 +1,12 @@
 package org.feuyeux.ai.langchain.hellolangchain;
 
+import static org.feuyeux.ai.langchain.hellolangchain.HelloOllama.buildOllamaModel;
+
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.PromptTemplate;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
-
-import static org.feuyeux.ai.langchain.hellolangchain.HelloOllama.buildOllamaModel;
 
 /**
  * @author feuyeux
