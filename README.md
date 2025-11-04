@@ -2,7 +2,6 @@
 
 A straightforward, equally capable demonstration for tracking the evolution of multiple programming languages across the iterations of LangChain.
 
-
 ## Resources
 
 ### SDK
@@ -16,14 +15,13 @@ A straightforward, equally capable demonstration for tracking the evolution of m
 
 ### Documentation
 
-- [LangChain Python](https://python.langchain.com/docs/introduction/)
+- [LangChain Python](https://docs.langchain.com/oss/python/langchain)
 - [Langchain4j](https://docs.langchain4j.dev/)
 - [LangChain Rust](https://docs.rs/crate/langchain-rust/latest)
 - [LangChain Go](https://docs.langchain.com/)
 - [LangChain Dart](https://pub.dev/packages/langchain)
-- [LangChain JS](https://js.langchain.com/docs/introduction/)
+- [LangChain JS](https://docs.langchain.com/oss/javascript/langchain)
 - [Gemini](https://ai.google.dev/tutorials/python_quickstart)
-
 
 ## Quick Start
 
