@@ -26,6 +26,7 @@ uv run hello_ollama.py
 ### Run Profile
 
 ```bash
+cd profile
 uv run hello_profile.py
 uv run hello_profile_png.py
 ```
