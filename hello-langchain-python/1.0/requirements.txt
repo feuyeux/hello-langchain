@@ -3,7 +3,7 @@ langchain-core==1.1.3
 langchain==1.1.3
 langchain-community==0.4.1
 langchain-ollama==1.0.0
-langchain-openai==1.1.1
+langchain-openai==1.1.2
 langgraph==1.0.4
 
 # Utility packages
