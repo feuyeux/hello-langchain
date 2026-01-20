@@ -26,7 +26,7 @@ template = """你是顶级的短片作家，
 prompt = ChatPromptTemplate.from_template(template)
 
 
-def llama():
+def ollama():
     llama_model = ChatOllama(
         model="qwen2.5",
         base_url="http://localhost:11434",
@@ -39,7 +39,7 @@ def llama():
 def zhipu():
     # https://open.bigmodel.cn/usercenter/proj-mgmt/rate-limits
     zhipu_model = ChatZhipuAI(
-        model="GLM-4-Plus",
+        model="GLM-4.7",
         temperature=0,
     )
     chain = prompt | zhipu_model
@@ -76,8 +76,8 @@ def deepseek():
 ####
 
 # 执行各个模型
-print_model_result("文心一言 (Wenxin/Qianfan)", wenxin)
-print_model_result("智谱AI (ZHIPU GLM-4-Plus)", zhipu)
-print_model_result("月之暗面 (KIMI)", kimi)
-print_model_result("深度求索 (Deepseek)", deepseek)
-print_model_result("本地模型 (OLLAMA - Qwen2.5)", llama)
+print_model_result("智谱AI", zhipu)
+# print_model_result("文心一言", wenxin)
+# print_model_result("月之暗面", kimi)
+# print_model_result("深度求索", deepseek)
+# print_model_result("OLLAMA", ollama)
