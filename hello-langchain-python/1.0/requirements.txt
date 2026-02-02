@@ -19,4 +19,4 @@ qianfan==0.4.12.3
 
 # Others
 grandalf==0.8     # Required by langgraph
-PyJWT==2.10.1      # Required for authentication
+PyJWT==2.11.0      # Required for authentication
