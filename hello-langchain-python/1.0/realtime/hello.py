@@ -1,19 +1,44 @@
 #!/usr/bin/env python3
-# Requirements: pip install websocket-client pyaudio
+"""qwen3-omni-flash-realtime WebSocket 实时语音对话示例
 
-"""
-Qwen-Omni-Realtime Client
-Real-time audio conversation with AI using WebSocket
+通过 DashScope Realtime API（WebSocket），展示上行/下行消息的完整数据流：
+  上行: session.update / input_audio_buffer.append
+  下行: response.audio.delta / response.audio_transcript.delta / response.done 等
+
+使用方式: uv run realtime/hello.py [voice]
+  voice: Cherry(默认) / Serena / Ethan 等
+  按 Ctrl+C 退出
 """
 
-import json
-import websocket
-import pyaudio
+# Requirements: pip install websocket-client pyaudio python-dotenv
+
+from __future__ import annotations
+
 import base64
+import json
 import os
-import uuid
 import threading
 import time
+import uuid
+from pathlib import Path
+
+import pyaudio
+import websocket
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+
+# ── 日志工具 ──────────────────────────────────────────────────
+def fmt_event(data: dict, *, max_audio_len: int = 40) -> str:
+    """格式化事件 JSON，截断 base64 音频数据避免刷屏。"""
+    d = dict(data)
+    # 截断上行音频
+    if "audio" in d and isinstance(d["audio"], str) and len(d["audio"]) > max_audio_len:
+        d["audio"] = d["audio"][:max_audio_len] + f"...({len(data['audio'])} chars)"
+    # 截断下行音频
+    if "delta" in d and isinstance(d["delta"], str) and len(d["delta"]) > max_audio_len:
+        d["delta"] = d["delta"][:max_audio_len] + f"...({len(data['delta'])} chars)"
+    return json.dumps(d, ensure_ascii=False, indent=2)
 
 
 class RealtimeClient:
@@ -37,6 +62,11 @@ class RealtimeClient:
         self.stop_recording = False
         self.ai_stop_time = 0
         self.resumption_delay = 0.9
+        
+        # 统计
+        self.audio_chunks_sent = 0
+        self.audio_chunks_recv = 0
+        self.turn_count = 0
         
         # Audio streams
         self.audio = pyaudio.PyAudio()
@@ -73,21 +103,17 @@ class RealtimeClient:
     def init_audio_output(self):
         """Initialize audio output stream"""
         try:
-            # Suppress ALSA warnings
-            import os
-            os.environ['ALSA_CARD'] = 'default'
-            
             self.output_stream = self.audio.open(
                 format=self.FORMAT,
                 channels=self.CHANNELS,
                 rate=self.RATE,
                 output=True,
-                frames_per_buffer=1024
+                frames_per_buffer=1024,
             )
-            print("Audio output ready\n")
+            print("[音频] 输出设备就绪\n")
         except Exception as e:
-            print(f"Audio output initialization failed: {e}")
-            print("Continuing without audio output...\n")
+            print(f"[音频] 输出设备初始化失败: {e}")
+            print("  继续运行（无音频播放）…\n")
     
     def init_audio_input(self):
         """Initialize audio input stream"""
@@ -109,13 +135,13 @@ class RealtimeClient:
         if not self.ai_is_speaking:
             self.ai_is_speaking = True
             self.stop_recording = True
-            print("\nAI speaking, recording paused...")
+            print("\n[录音] AI 说话中，暂停录音…")
     
     def resume_recording(self):
         """Resume recording after AI finishes (with delay)"""
         if self.ai_is_speaking:
             self.ai_stop_time = time.time()
-            print(f"\nAI finished, resuming in {self.resumption_delay}s...")
+            print(f"[录音] AI 结束, {self.resumption_delay}s 后恢复录音…")
     
     def check_resume_recording(self):
         """Check if recording should resume"""
@@ -125,20 +151,23 @@ class RealtimeClient:
                 self.ai_is_speaking = False
                 self.stop_recording = False
                 self.ai_stop_time = 0
-                print("\nRecording resumed, please speak...\n")
+                print("\n[录音] 已恢复，请说话…\n")
     
     def on_open(self, ws):
         """WebSocket connection opened"""
         self.is_connected = True
-        print("Connected to Qwen-Omni-Realtime\n")
+        print("[连接] 已连接 Qwen-Omni-Realtime\n")
         
         # Send session configuration
-        ws.send(json.dumps(self.create_session_config()))
+        config = self.create_session_config()
+        print("[上行] session.update")
+        print(fmt_event(config))
+        ws.send(json.dumps(config))
         
+        print()
         print("=" * 60)
-        print(f"Voice: {self.voice}")
-        print("Please start speaking...")
-        print("Press Ctrl+C to exit")
+        print(f"语音角色: {self.voice}")
+        print("请开始说话… 按 Ctrl+C 退出")
         print("=" * 60)
         
         self.init_audio_output()
@@ -146,14 +175,36 @@ class RealtimeClient:
         self.start_recording()
     
     def on_message(self, ws, message):
-        """Handle WebSocket messages"""
+        """Handle WebSocket messages — 打印所有下行事件"""
         try:
             data = json.loads(message)
-            event_type = data.get("type")
-            
+            event_type = data.get("type", "")
+
+            # 音频数据 chunk 只计数，不逐条打印
+            if event_type == "response.audio.delta":
+                self.audio_chunks_recv += 1
+                audio_delta = data.get("delta", "")
+                if audio_delta and self.output_stream:
+                    try:
+                        self.output_stream.write(base64.b64decode(audio_delta))
+                    except Exception:
+                        pass
+                return
+
+            # 文本 transcript delta — 实时打印文字
+            if event_type == "response.audio_transcript.delta":
+                text = data.get("delta", "")
+                if text:
+                    print(text, end="", flush=True)
+                return
+
+            # 其余事件完整打印
+            print(f"\n[下行] {event_type}")
+            print(fmt_event(data))
+
             if event_type == "input_audio_buffer.speech_started":
                 if not self.ai_is_speaking:
-                    print("\nRecording...")
+                    print("  → 检测到用户语音…")
             
             elif event_type == "conversation.item.created":
                 item = data.get("item", {})
@@ -162,47 +213,42 @@ class RealtimeClient:
                     if content_list and isinstance(content_list[0], dict):
                         transcript = content_list[0].get("transcript", "")
                         if transcript:
+                            self.turn_count += 1
                             print(f"\n{'=' * 60}")
-                            print(f"You: {transcript}")
+                            print(f"[Turn {self.turn_count}] 你: {transcript}")
                             print(f"{'=' * 60}")
                             print("AI: ", end="", flush=True)
             
             elif event_type == "response.created":
                 self.pause_recording()
             
-            elif event_type == "response.audio_transcript.delta":
-                text = data.get("delta", "")
-                if text:
-                    print(text, end="", flush=True)
-            
-            elif event_type == "response.audio.delta":
-                audio_delta = data.get("delta", "")
-                if audio_delta and self.output_stream:
-                    try:
-                        audio_data = base64.b64decode(audio_delta)
-                        self.output_stream.write(audio_data)
-                    except:
-                        pass
-            
             elif event_type == "response.done":
                 print()
+                print(f"  → 音频 chunks 接收: {self.audio_chunks_recv}")
+                self.audio_chunks_recv = 0
                 self.resume_recording()
                 print(f"{'=' * 60}\n")
             
+            elif event_type == "session.created":
+                print("  → 会话已创建")
+
+            elif event_type == "session.updated":
+                print("  → 会话配置已更新")
+            
             elif event_type == "error":
                 error = data.get("error", {})
-                print(f"\nError: {error.get('message', 'Unknown error')}")
+                print(f"  → 错误: {error.get('message', 'Unknown error')}")
         
         except Exception:
             pass
     
     def on_error(self, ws, error):
         """Handle WebSocket errors"""
-        print(f"\nConnection error: {error}")
+        print(f"\n[错误] 连接异常: {error}")
     
     def on_close(self, ws, *args):
         """WebSocket connection closed"""
-        print("\nConnection closed")
+        print(f"\n[连接] 已断开 (共 {self.turn_count} 轮对话, 上行音频 chunks: {self.audio_chunks_sent})")
         self.is_running = False
         self.is_connected = False
         
@@ -237,9 +283,10 @@ class RealtimeClient:
                         msg = {
                             "event_id": self.generate_event_id(),
                             "type": "input_audio_buffer.append",
-                            "audio": audio_base64
+                            "audio": audio_base64,
                         }
                         self.ws.send(json.dumps(msg))
+                        self.audio_chunks_sent += 1
                 
                 except Exception:
                     if self.is_running:
@@ -255,7 +302,7 @@ class RealtimeClient:
         if self.recording_thread is None or not self.recording_thread.is_alive():
             self.recording_thread = threading.Thread(target=self.record_audio, daemon=True)
             self.recording_thread.start()
-            print("Recording started\n")
+            print("[录音] 已启动\n")
     
     def start(self):
         """Start WebSocket connection"""
@@ -271,33 +318,33 @@ class RealtimeClient:
         self.ws.run_forever()
 
 
-def create_client(voice: str = "Cherry"):
-    """Create realtime client"""
+def create_client(voice: str = "Cherry") -> RealtimeClient:
     api_key = os.getenv("DASHSCOPE_API_KEY")
     if not api_key:
-        raise ValueError("DASHSCOPE_API_KEY environment variable not set")
-    
+        raise ValueError("请设置 DASHSCOPE_API_KEY 环境变量")
     return RealtimeClient(api_key, voice)
 
 
 def main():
     import sys
-    
+
     voice = sys.argv[1] if len(sys.argv) > 1 else "Cherry"
-    
+
     print("\n" + "=" * 60)
-    print("Qwen-Omni-Realtime Client")
+    print("Qwen-Omni-Realtime 实时语音对话")
     print("=" * 60)
-    print(f"Voice: {voice}")
-    print(f"Strategy: Pause recording during playback")
-    
+    print(f"语音角色  : {voice}")
+    print(f"录音策略  : AI 说话时暂停录音")
+    print(f"上行事件  : session.update / input_audio_buffer.append")
+    print(f"下行事件  : response.audio.delta / response.done 等")
+
     try:
         client = create_client(voice)
         client.start()
     except KeyboardInterrupt:
-        print("\n\nGoodbye!")
+        print("\n\n再见!")
     except Exception as e:
-        print(f"\nError: {e}")
+        print(f"\n错误: {e}")
 
 
 if __name__ == "__main__":
