@@ -17,7 +17,7 @@ pyaudio
 
 # API clients
 openai==2.20.0
-openai-harmony==0.0.4
+openai-harmony==0.0.8
 httpx==0.28.1
 httpx-sse==0.4.3
 qianfan==0.4.12.3
