@@ -16,7 +16,7 @@ websocket-client
 pyaudio
 
 # API clients
-openai==2.21.0
+openai==2.23.0
 openai-harmony==0.0.8
 httpx==0.28.1
 httpx-sse==0.4.3
