@@ -4,7 +4,7 @@ langchain==1.3.2
 langchain-community==0.4.2
 langchain-ollama==1.1.0
 langchain-openai==1.2.2
-langgraph==1.2.1
+langgraph==1.2.2
 
 # Utility packages
 python-dotenv==1.2.2
