@@ -9,7 +9,7 @@ langgraph==1.2.4
 # Utility packages
 python-dotenv==1.2.2
 psutil==7.2.2
-matplotlib==3.10.9
+matplotlib==3.11.0
 numpy
 soundfile
 websocket-client
