@@ -7,7 +7,7 @@ langchain-openai==1.4.3
 langgraph==1.2.11
 
 # Utility packages
-python-dotenv==1.2.2
+python-dotenv==1.2.3
 psutil==7.2.2
 matplotlib==3.11.1
 numpy
