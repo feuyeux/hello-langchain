@@ -1,6 +1,6 @@
 # LangChain related packages
 langchain-core==1.6.3
-langchain==1.4.1
+langchain==1.4.2
 langchain-community==0.4.2
 langchain-ollama==1.1.0
 langchain-openai==1.6.2
